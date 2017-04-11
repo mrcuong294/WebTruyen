@@ -1,0 +1,20 @@
+{
+  "id": "1",
+  "home": "https:\/\/google.com",
+  "fanpage": "https:\/\/facebook.com",
+  "email": "admin@gmail.com",
+  "about_us": "Gi\u1edbi thi\u1ec7u",
+  "popup_update": "N\u1ed9i dung c\u1eadp nh\u1eadt",
+  "apk_url": null,
+  "app_ver": "1",
+  "app_ver_name": "1.0",
+  "force_update": "0",
+  "store_update": "1",
+  "adv_provider": "0",
+  "admob_banner_key": null,
+  "admob_interstitial_key": null,
+  "admob_native_key": null,
+  "face_banner_key": null,
+  "face_interstitial_key": null,
+  "face_native_key": null
+}
