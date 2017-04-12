@@ -6,6 +6,17 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:colorBackground">@color/background_dark</item>
+    </style>
+
+    <style name="AppTheme.Text.Display" parent="TextAppearance.AppCompat.Headline"/>
+    <style name="AppTheme.Text.Title" parent="TextAppearance.AppCompat.Subhead"/>
+    <style name="AppTheme.Text.Body" parent="TextAppearance.AppCompat.Body1"/>
+    <style name="AppTheme.Text.Body.Bold" parent="TextAppearance.AppCompat.Body2"/>
+    <style name="AppTheme.Text.Caption" parent="TextAppearance.AppCompat.Caption"/>
+    <style name="AppTheme.Text.Button" parent="TextAppearance.AppCompat.Button">
+        <item name="textAllCaps">true</item>
+        <item name="android:textAllCaps">true</item>
     </style>
 
 </resources>
