@@ -29,5 +29,7 @@
 
     <color name="divider_light">#1effffff</color>
     <color name="divider_dark">#1e000000</color>
+    <color name="transparent_dark">#00000000</color>
+    <color name="transparent_light">#00ffffff</color>
 
 </resources>

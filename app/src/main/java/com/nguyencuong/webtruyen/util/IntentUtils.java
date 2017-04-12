@@ -5,7 +5,8 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 
-import com.vungtv.film.BuildConfig;
+import com.nguyencuong.webtruyen.BuildConfig;
+
 
 /**
  * Content class.

@@ -6,6 +6,8 @@ import android.content.DialogInterface;
 import android.view.KeyEvent;
 import android.view.Window;
 
+import com.nguyencuong.webtruyen.R;
+
 public class DialogLoading {
     private Dialog dialog;
     private OnPopupLoadingListener onPopupLoadingListener;
@@ -42,9 +44,9 @@ public class DialogLoading {
     }
 
     private void build(Context context) {
-        //dialog = new Dialog(context, R.style.AppTheme_Dialog);
+        dialog = new Dialog(context, R.style.AppTheme_Dialog);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        //dialog.setContentView(R.layout.popup_loading);
+        dialog.setContentView(R.layout.popup_loading);
         dialog.setCanceledOnTouchOutside(false);
 
         dialog.setOnKeyListener(new DialogInterface.OnKeyListener() {

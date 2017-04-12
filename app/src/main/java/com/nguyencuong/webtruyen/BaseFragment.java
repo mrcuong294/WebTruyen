@@ -1,8 +1,8 @@
 package com.nguyencuong.webtruyen;
 
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,8 +24,6 @@ public abstract class BaseFragment extends Fragment {
     private Unbinder unbinder;
 
     protected DialogLoading dialogLoading;
-
-    protected boolean isScreenLand = false;
 
     protected boolean isLoadingBackPressExit = true;
 
@@ -54,15 +52,13 @@ public abstract class BaseFragment extends Fragment {
         super.onDestroyView();
     }
 
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        isScreenLand = newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE;
-    }
-
     protected abstract int getFragmentLayout();
 
     protected void showToast(String mes) {
         Toast.makeText(getActivity().getApplicationContext(), mes, Toast.LENGTH_SHORT).show();
+    }
+
+    protected void showToast(@StringRes int idRes) {
+        Toast.makeText(getActivity().getApplicationContext(), getString(idRes), Toast.LENGTH_SHORT).show();
     }
 }

@@ -1,7 +1,7 @@
 package com.nguyencuong.webtruyen.util;
 
 
-import com.vungtv.film.BuildConfig;
+import com.nguyencuong.webtruyen.BuildConfig;
 
 public class LogUtils {
 

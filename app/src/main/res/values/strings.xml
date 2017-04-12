@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Web Truyen</string>
+    <string name="bottom_bar_text_kham_pha">Khám phá</string>
+    <string name="bottom_bar_text_danh_muc">Danh mục</string>
+    <string name="bottom_bar_text_thu_vien">Thư viện</string>
+    <string name="bottom_bar_text_ca_nhan">Cá nhân</string>
+    <string name="dialog_text_loading">Đang tải...</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

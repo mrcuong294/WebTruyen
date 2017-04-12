@@ -13,15 +13,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".screen.home.MainActivity"/>
+        <activity
+            android:name=".screen.splashscreen.SplashActivity"
+            android:launchMode="singleTop"
+            android:configChanges="orientation|keyboard|keyboardHidden">
 
-        <activity android:name=".screen.splashscreen.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
+
+        <activity
+            android:name=".screen.mainscreen.MainActivity"
+            android:launchMode="singleTop"
+            android:configChanges="orientation|keyboard|keyboardHidden"/>
 
     </application>
 

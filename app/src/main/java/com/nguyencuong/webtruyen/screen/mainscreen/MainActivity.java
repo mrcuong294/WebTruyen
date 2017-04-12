@@ -1,4 +1,4 @@
-package com.nguyencuong.webtruyen.screen.home;
+package com.nguyencuong.webtruyen.screen.mainscreen;
 
 import android.os.Bundle;
 
