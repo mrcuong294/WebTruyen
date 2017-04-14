@@ -4,9 +4,16 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.nguyencuong.webtruyen.BaseFragment;
 import com.nguyencuong.webtruyen.R;
+import com.nguyencuong.webtruyen.data.remote.services.HomeServices;
+import com.nguyencuong.webtruyen.model.Slider;
+import com.nguyencuong.webtruyen.util.LogUtils;
+import com.nguyencuong.webtruyen.widget.slider.BookSliderView;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -17,21 +24,33 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
 
     private HomeContract.Presenter presenter;
 
+    LinearLayout contentLayout;
+
+    BookSliderView mSliderView;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
+        LogUtils.d("HomeFragment", "onCreate");
+        if (contentLayout == null) {
+            LogUtils.d("HomeFragment", "onCreate contentLayout NULL");
+        }
     }
 
     @Override
     protected int getFragmentLayout() {
         return R.layout.fragment_home;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        contentLayout = (LinearLayout) view.findViewById(R.id.home_content_layout);
+        new HomePresenter(this, new HomeServices(getActivity()));
+        LogUtils.d("HomeFragment", "onViewCreated");
+        if (contentLayout == null) {
+            LogUtils.d("HomeFragment", "onViewCreated contentLayout NULL");
+        }
     }
 
     /**
@@ -42,6 +61,13 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
     @Override
     public void onStart() {
         super.onStart();
+        LogUtils.d("HomeFragment", "onStart");
+        if (contentLayout == null) {
+            LogUtils.d("HomeFragment", "onStart contentLayout NULL");
+        }
+        if (contentLayout.getChildCount() == 0) {
+            presenter.onStart();
+        }
     }
 
     /**
@@ -53,6 +79,9 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
     @Override
     public void onResume() {
         super.onResume();
+        if (mSliderView != null) {
+            mSliderView.startSlider();
+        }
     }
 
     /**
@@ -62,6 +91,9 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
      */
     @Override
     public void onPause() {
+        if (mSliderView != null) {
+            mSliderView.stopSlider();
+        }
         super.onPause();
     }
 
@@ -77,6 +109,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
 
     @Override
     public void onDestroyView() {
+        presenter.onDestroy();
         super.onDestroyView();
     }
 
@@ -87,16 +120,30 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
 
     @Override
     public void showLoading(boolean show) {
-
+        dialogLoading.show(show);
     }
 
     @Override
     public void showMsgError(boolean show, String msg) {
-
+        showToastError(msg);
     }
 
     @Override
     public void showMsgToast(String msg) {
 
+    }
+
+    @Override
+    public void addSliderView(ArrayList<Slider> sliders) {
+        if (mSliderView == null) {
+            mSliderView = new BookSliderView(getActivity());
+            mSliderView.setupAdapter(getFragmentManager());
+        }
+        mSliderView.setListSliders(sliders);
+
+        contentLayout.removeView(mSliderView);
+        contentLayout.addView(mSliderView, 0);
+
+        mSliderView.startSlider();
     }
 }

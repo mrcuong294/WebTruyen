@@ -9,10 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.nguyencuong.webtruyen.util.LogUtils;
 import com.nguyencuong.webtruyen.widget.dialog.DialogLoading;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import es.dmoral.toasty.Toasty;
 
 /**
  *
@@ -41,6 +43,7 @@ public abstract class BaseFragment extends Fragment {
                 }
             }
         });
+        LogUtils.d("BaseFragment", "onCreateView");
         return v;
     }
 
@@ -60,5 +63,21 @@ public abstract class BaseFragment extends Fragment {
 
     protected void showToast(@StringRes int idRes) {
         Toast.makeText(getActivity().getApplicationContext(), getString(idRes), Toast.LENGTH_SHORT).show();
+    }
+
+    protected void showToastError(@StringRes int messageId) {
+        showToastError(getString(messageId));
+    }
+
+    protected void showToastError(String mes) {
+        Toasty.error(getActivity().getApplicationContext(), mes + "", Toast.LENGTH_LONG).show();
+    }
+
+    protected void showToastSuccess(@StringRes int messageId) {
+        showToastSuccess(getString(messageId));
+    }
+
+    protected void showToastSuccess(String mes) {
+        Toasty.success(getActivity().getApplicationContext(), mes + "", Toast.LENGTH_SHORT).show();
     }
 }

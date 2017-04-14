@@ -11,6 +11,8 @@ public abstract class BaseApiServices {
 
     protected static final String assetPath = "json";
 
+    protected static final String PATH_TEST = "testdata";
+
     protected static final String SRC = "android";
 
     protected final Context context;

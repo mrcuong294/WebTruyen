@@ -9,10 +9,10 @@ import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-
 import com.nguyencuong.webtruyen.widget.dialog.DialogLoading;
 
 import butterknife.ButterKnife;
+import es.dmoral.toasty.Toasty;
 
 /**
  * Base Activity;
@@ -75,5 +75,21 @@ public class BaseActivity  extends AppCompatActivity{
 
     protected void showToast(@StringRes int messageId) {
         showToast(getString(messageId));
+    }
+
+    protected void showToastError(@StringRes int messageId) {
+        showToastError(getString(messageId));
+    }
+
+    protected void showToastError(String mes) {
+        Toasty.error(getApplicationContext(), mes + "", Toast.LENGTH_LONG).show();
+    }
+
+    protected void showToastSuccess(@StringRes int messageId) {
+        showToastSuccess(getString(messageId));
+    }
+
+    protected void showToastSuccess(String mes) {
+        Toasty.success(getApplicationContext(), mes + "", Toast.LENGTH_SHORT).show();
     }
 }

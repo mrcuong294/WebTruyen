@@ -2,6 +2,9 @@ package com.nguyencuong.webtruyen.screen.home;
 
 import com.nguyencuong.webtruyen.BaseContractPresenter;
 import com.nguyencuong.webtruyen.BaseContractView;
+import com.nguyencuong.webtruyen.model.Slider;
+
+import java.util.ArrayList;
 
 /**
  * Content class.
@@ -14,6 +17,7 @@ public interface HomeContract {
 
     interface View extends BaseContractView<Presenter> {
 
+        void addSliderView(ArrayList<Slider> sliders);
     }
 
     interface Presenter extends BaseContractPresenter {

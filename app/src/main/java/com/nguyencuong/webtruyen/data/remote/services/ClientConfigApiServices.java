@@ -21,7 +21,7 @@ public class ClientConfigApiServices extends BaseApiServices {
         super(context);
     }
 
-    public void clientConfigExec() {
+    public void loadClientConfig() {
 
     }
 
