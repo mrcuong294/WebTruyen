@@ -1,19 +1,29 @@
 package com.nguyencuong.webtruyen.screen.home;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.nguyencuong.webtruyen.BaseFragment;
 import com.nguyencuong.webtruyen.R;
 import com.nguyencuong.webtruyen.data.remote.services.HomeServices;
+import com.nguyencuong.webtruyen.model.Book;
 import com.nguyencuong.webtruyen.model.Slider;
+import com.nguyencuong.webtruyen.util.DensityUtils;
 import com.nguyencuong.webtruyen.util.LogUtils;
+import com.nguyencuong.webtruyen.widget.homeblock.HomeBlockHorizontalView;
+import com.nguyencuong.webtruyen.widget.homeblock.HomeBlockView;
 import com.nguyencuong.webtruyen.widget.slider.BookSliderView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,17 +34,18 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
 
     private HomeContract.Presenter presenter;
 
-    LinearLayout contentLayout;
+    private LinearLayout contentLayout;
 
-    BookSliderView mSliderView;
+    private BookSliderView mSliderView;
+
+    private Animation animAddView;
+
+    private Handler mHandler;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        LogUtils.d("HomeFragment", "onCreate");
-        if (contentLayout == null) {
-            LogUtils.d("HomeFragment", "onCreate contentLayout NULL");
-        }
+        mHandler = new Handler();
     }
 
     @Override
@@ -45,12 +56,12 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         contentLayout = (LinearLayout) view.findViewById(R.id.home_content_layout);
+        animAddView = AnimationUtils.loadAnimation(
+                getActivity().getApplicationContext(), R.anim.fade_in_anim);
+
         new HomePresenter(this, new HomeServices(getActivity()));
-        LogUtils.d("HomeFragment", "onViewCreated");
-        if (contentLayout == null) {
-            LogUtils.d("HomeFragment", "onViewCreated contentLayout NULL");
-        }
     }
 
     /**
@@ -110,6 +121,8 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
     @Override
     public void onDestroyView() {
         presenter.onDestroy();
+        mHandler.removeCallbacksAndMessages(null);
+        mHandler = null;
         super.onDestroyView();
     }
 
@@ -125,7 +138,12 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
 
     @Override
     public void showMsgError(boolean show, String msg) {
-        showToastError(msg);
+        if (show) showToastError(msg);
+    }
+
+    @Override
+    public void showMsgError(boolean show, @StringRes int resId) {
+        if (show) showToastError(resId);
     }
 
     @Override
@@ -134,7 +152,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
     }
 
     @Override
-    public void addSliderView(ArrayList<Slider> sliders) {
+    public void addSliderView(List<Slider> sliders) {
         if (mSliderView == null) {
             mSliderView = new BookSliderView(getActivity());
             mSliderView.setupAdapter(getFragmentManager());
@@ -145,5 +163,86 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
         contentLayout.addView(mSliderView, 0);
 
         mSliderView.startSlider();
+    }
+
+    @Override
+    public void addBlockBookListVertical(final int style, final String title, final String urlMore, final List<Book> books) {
+        final View placeHolderView = new View(getContext());
+        contentLayout.setId(contentLayout.getChildCount());
+        contentLayout.addView(placeHolderView);
+        LogUtils.d(TAG, "addBlockBookListVertical : add placeHolderView at " + title);
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                HomeBlockView homeBlockView = new HomeBlockView(getActivity(), style);
+                homeBlockView.setTextTitle(title);
+                homeBlockView.setUrlViewMore(urlMore);
+                homeBlockView.setListBooks(books);
+                homeBlockView.setOnViewMoreListener(new HomeBlockView.OnViewMoreListener() {
+                    @Override
+                    public void onHomeBlockViewMoreClick(String urlMore) {
+                        showToastSuccess(urlMore);
+                    }
+                });
+                contentLayout.removeView(placeHolderView);
+                contentLayout.addView(homeBlockView, contentLayout.getId());
+                LogUtils.d(TAG, "addBlockBookListVertical : add homeBlockView at " + title);
+                contentLayout.startAnimation(animAddView);
+            }
+        });
+    }
+
+    @Override
+    public void addBlockBookListHorizontal(final String urlBg, final String title, final String subTitle, final String urlMore, final List<Book> books) {
+        final View placeHolderView = new View(getContext());
+        contentLayout.setId(contentLayout.getChildCount());
+        contentLayout.addView(placeHolderView);
+        LogUtils.d(TAG, "addBlockBookListHorizontal : add placeHolderView at " + title);
+
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                HomeBlockHorizontalView homeBlockView = new HomeBlockHorizontalView(getActivity());
+                homeBlockView.setTextTitle(title);
+                homeBlockView.setTextSubTitle(subTitle);
+                homeBlockView.setUrlViewMore(urlMore);
+                homeBlockView.setListBooks(books);
+                homeBlockView.setOnViewMoreListener(new HomeBlockHorizontalView.OnViewMoreListener() {
+                    @Override
+                    public void onHomeBlockViewMoreClick(String urlMore) {
+                        showToastSuccess(urlMore);
+                    }
+                });
+                contentLayout.removeView(placeHolderView);
+                contentLayout.addView(homeBlockView, contentLayout.getId());
+                LogUtils.d(TAG, "addBlockBookListHorizontal : add homeBlockView at " + title);
+                contentLayout.startAnimation(animAddView);
+                homeBlockView.setBackGroundView(urlBg);
+            }
+        });
+    }
+
+    @Override
+    public void addAdsView() {
+        final View placeHolderView = new View(getContext());
+        contentLayout.setId(contentLayout.getChildCount());
+        contentLayout.addView(placeHolderView);
+
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                int padding = DensityUtils.dip2px(getActivity(),16);
+                TextView view = new TextView(getActivity());
+                view.setBackgroundResource(R.color.background_dark);
+                view.setPadding(padding, padding, padding, padding);
+                view.setText("Quang cao");
+                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                layoutParams.topMargin = padding;
+                contentLayout.removeView(placeHolderView);
+                contentLayout.addView(view, contentLayout.getId());
+                contentLayout.startAnimation(animAddView);
+            }
+        });
     }
 }

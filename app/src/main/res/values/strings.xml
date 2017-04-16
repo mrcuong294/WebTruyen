@@ -1,12 +1,20 @@
 <resources>
-    <string name="app_name">Web Truyen</string>
+    <string name="app_name">Book library</string>
     <string name="bottom_bar_text_kham_pha">Khám phá</string>
     <string name="bottom_bar_text_danh_muc">Danh mục</string>
     <string name="bottom_bar_text_thu_vien">Thư viện</string>
     <string name="bottom_bar_text_ca_nhan">Cá nhân</string>
-    <string name="dialog_text_loading">Đang tải...</string>
+    <string name="dialog_text_loading">Đang tải&#8230;</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="error_msg_no_data">Không có dữ liệu.</string>
+    <string name="widget_slider_action_most_viewed">Top đọc nhiều</string>
+    <string name="widget_slider_action_most_favorite">Top yêu thích</string>
+    <string name="widget_slider_action_most_vote">Đánh giá cao</string>
+    <string name="widget_home_block_action_view_more">Xem thêm »</string>
+    <string name="widget_home_block_item_list_text_chapter">%1$s/%2$s chương%3$s</string>
+    <string name="widget_home_block_item_grid_text_chapter">%1$s/%2$s</string>
+    <string name="widget_home_block_item_list_text_author">Tác giả : %s</string>
+    <string name="widget_home_block_item_list_text_viewed">%s lượt đọc</string>
 </resources>

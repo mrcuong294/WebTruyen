@@ -2,12 +2,11 @@ package com.nguyencuong.webtruyen.screen.home;
 
 import com.nguyencuong.webtruyen.BaseContractView;
 import com.nguyencuong.webtruyen.BasePresenter;
+import com.nguyencuong.webtruyen.Constants;
+import com.nguyencuong.webtruyen.R;
 import com.nguyencuong.webtruyen.data.remote.ApiError;
 import com.nguyencuong.webtruyen.data.remote.model.HomeModel;
 import com.nguyencuong.webtruyen.data.remote.services.HomeServices;
-import com.nguyencuong.webtruyen.model.Slider;
-
-import java.util.ArrayList;
 
 /**
  * Content class.
@@ -65,6 +64,44 @@ public class HomePresenter extends BasePresenter implements HomeServices.ResultC
     @Override
     public void onHomeResultSuccess(HomeModel.Data data) {
         screenView.showLoading(false);
-        screenView.addSliderView((ArrayList<Slider>) data.getSliders());
+        if (data == null && mHomeServices.getOffset() == 0) {
+            screenView.showMsgError(true, R.string.error_msg_no_data);
+            return;
+        }
+        if (data == null) return;
+
+        // Hide alert error;
+        screenView.showMsgError(false, null);
+
+        // Add Slider view if first load
+        if (mHomeServices.getOffset() == 0) {
+            screenView.addSliderView(data.getSliders());
+        }
+
+        for (HomeModel.Items homeItem : data.getItems()) {
+
+            switch (homeItem.getStyle()) {
+                default:
+                    screenView.addBlockBookListVertical(
+                            homeItem.getStyle(),
+                            homeItem.getTitle(),
+                            homeItem.getLink(),
+                            homeItem.getBookList()
+                    );
+                    break;
+                case Constants.HOME_ITEM_STYLE_LIST_H:
+                    screenView.addBlockBookListHorizontal(
+                            homeItem.getImgBg(),
+                            homeItem.getTitle(),
+                            homeItem.getSubTitle(),
+                            homeItem.getLink(),
+                            homeItem.getBookList()
+                    );
+                    break;
+                case Constants.HOME_ITEM_STYLE_ADS:
+                    screenView.addAdsView();
+                    break;
+            }
+        }
     }
 }

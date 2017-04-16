@@ -6,14 +6,25 @@
 
     <color name="black">#000000</color>
     <color name="black_87">#de000000</color>
+    <color name="black_80">#cc000000</color>
+    <color name="black_70">#b2000000</color>
+    <color name="black_60">#99000000</color>
     <color name="black_50">#61000000</color>
     <color name="black_12">#1e000000</color>
 
     <color name="background_dark">#303030</color>
+    <color name="background_dark_87">#de303030</color>
 
+    <color name="blue_70">#b20277bd</color>
+    <color name="blue_50">#610277bd</color>
     <color name="blue">#0277bd</color>
     <color name="blue_light">#58a5f0</color>
     <color name="blue_dark">#004c8c</color>
+
+    <color name="orange_light">#FF8951</color>
+    <color name="orange_dark">#E03600</color>
+    <color name="orange_70">#b2FF3D00</color>
+    <color name="orange">#FF3D00</color>
 
     <color name="gray">#212121</color>
     <color name="gray_light">#484848</color>

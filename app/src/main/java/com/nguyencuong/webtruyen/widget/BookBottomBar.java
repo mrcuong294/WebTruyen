@@ -75,7 +75,7 @@ public class BookBottomBar extends LinearLayout {
     public BookBottomBar(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        LayoutInflater.from(getContext()).inflate(R.layout.widget_book_bottom_bar, this, true);
+        LayoutInflater.from(getContext()).inflate(R.layout.widget_bottom_bar, this, true);
 
         COLOR_NORMAL = ResourcesCompat.getColor(getContext().getResources(), R.color.text_light_1, null);
         COLOR_ACTIVE = ResourcesCompat.getColor(getContext().getResources(), R.color.blue_light, null);
@@ -132,6 +132,9 @@ public class BookBottomBar extends LinearLayout {
                     changeIconColor(imgIconEnd, COLOR_NORMAL);
                     changeTextColor(tvLabel, COLOR_ACTIVE);
                     changeTextColor(tvLabelEnd, COLOR_NORMAL);
+
+                    itemView.setAlpha(1.0f);
+                    itemViewEnd.setAlpha(0.7f);
                 }
             });
         }

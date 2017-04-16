@@ -14,9 +14,28 @@
     <style name="AppTheme.Text.Body" parent="TextAppearance.AppCompat.Body1"/>
     <style name="AppTheme.Text.Body.Bold" parent="TextAppearance.AppCompat.Body2"/>
     <style name="AppTheme.Text.Caption" parent="TextAppearance.AppCompat.Caption"/>
+    <style name="AppTheme.Text.Caption.Tiny" parent="TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">10sp</item>
+    </style>
     <style name="AppTheme.Text.Button" parent="TextAppearance.AppCompat.Button">
         <item name="textAllCaps">true</item>
         <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="AppTheme.Text.Home.Book.Title" parent="@style/AppTheme.Text.Title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="AppTheme.Text.Home.Book.Info" parent="@style/AppTheme.Text.Body">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/space_8</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textColor">@color/text_light_2</item>
     </style>
 
     <style name="AppTheme.Dialog" parent="Theme.AppCompat.Light.Dialog">
@@ -31,6 +50,11 @@
         <item name="android:background">@color/transparent_light</item>
         <item name="android:layout_width">36dp</item>
         <item name="android:layout_height">36dp</item>
+    </style>
+
+    <style name="AppTheme.RatingBar.Small" parent="Widget.AppCompat.RatingBar.Small">
+        <item name="colorControlNormal">@color/gray_light</item>
+        <item name="colorControlActivated">@color/colorAccent</item>
     </style>
 
 </resources>

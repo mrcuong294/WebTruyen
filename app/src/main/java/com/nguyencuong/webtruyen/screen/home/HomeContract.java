@@ -2,9 +2,10 @@ package com.nguyencuong.webtruyen.screen.home;
 
 import com.nguyencuong.webtruyen.BaseContractPresenter;
 import com.nguyencuong.webtruyen.BaseContractView;
+import com.nguyencuong.webtruyen.model.Book;
 import com.nguyencuong.webtruyen.model.Slider;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Content class.
@@ -17,7 +18,13 @@ public interface HomeContract {
 
     interface View extends BaseContractView<Presenter> {
 
-        void addSliderView(ArrayList<Slider> sliders);
+        void addSliderView(List<Slider> sliders);
+
+        void addBlockBookListVertical(int style, String title, String urlMore, List<Book> books);
+
+        void addBlockBookListHorizontal(String urlBg, String title, String subTitle, String urlMore, List<Book> books);
+
+        void addAdsView();
     }
 
     interface Presenter extends BaseContractPresenter {

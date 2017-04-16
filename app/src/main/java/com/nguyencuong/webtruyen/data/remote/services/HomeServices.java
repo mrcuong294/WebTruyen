@@ -9,6 +9,10 @@ import com.nguyencuong.webtruyen.data.remote.BaseApiServices;
 import com.nguyencuong.webtruyen.data.remote.model.HomeModel;
 import com.nguyencuong.webtruyen.util.FileUtils;
 
+import retrofit2.Call;
+import retrofit2.http.GET;
+import retrofit2.http.Query;
+
 /**
  * The Class
  * Created by pc on 4/14/2017.
@@ -21,7 +25,9 @@ public class HomeServices extends BaseApiServices {
         void onHomeResultSuccess(HomeModel.Data data);
     }
 
-    ResultCallback resultCallback;
+    private ResultCallback resultCallback;
+
+    private int offset = 0;
 
     public HomeServices(Context context) {
         super(context);
@@ -31,12 +37,20 @@ public class HomeServices extends BaseApiServices {
         this.resultCallback = resultCallback;
     }
 
+    public void setOffset(int offset) {
+        this.offset = offset;
+    }
+
+    public int getOffset() {
+        return offset;
+    }
+
     public void loadHomeData() {
         if (resultCallback == null) {
             return;
         }
+        String dataJson = FileUtils.getJsonFromAssets(context, PATH_TEST, "home_data_" + offset + ".json");
 
-        String dataJson = FileUtils.getJsonFromAssets(context, PATH_TEST, "home_data.json");
         if (dataJson != null) {
             HomeModel homeModel = new Gson().fromJson(dataJson, HomeModel.class);
             resultCallback.onHomeResultSuccess(homeModel.getData());
@@ -48,5 +62,11 @@ public class HomeServices extends BaseApiServices {
     @Override
     public void cancel() {
 
+    }
+
+    interface ServicesInterface {
+
+        @GET("home")
+        Call<HomeModel> loadHomeData(@Query("offset") int offset);
     }
 }

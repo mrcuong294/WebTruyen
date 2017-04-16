@@ -1,5 +1,7 @@
 package com.nguyencuong.webtruyen;
 
+import android.support.annotation.StringRes;
+
 /**
  * Content class.
  * <p>
@@ -14,6 +16,8 @@ public interface BaseContractView<T> {
     void showLoading(boolean show);
 
     void showMsgError(boolean show, String msg);
+
+    void showMsgError(boolean show, @StringRes int resId);
 
     void showMsgToast(String msg);
 }

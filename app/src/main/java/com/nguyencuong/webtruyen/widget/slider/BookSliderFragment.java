@@ -16,6 +16,7 @@ import com.nguyencuong.webtruyen.Constants;
 import com.nguyencuong.webtruyen.R;
 import com.nguyencuong.webtruyen.model.Slider;
 import com.nguyencuong.webtruyen.util.IntentUtils;
+import com.nguyencuong.webtruyen.util.LogUtils;
 import com.nguyencuong.webtruyen.util.StringUtils;
 
 import es.dmoral.toasty.Toasty;
@@ -59,7 +60,7 @@ public class BookSliderFragment extends Fragment implements View.OnClickListener
                 }
             }
         }
-
+        LogUtils.d("BookSliderFragment", "urlImage = " + urlImage);
         Glide.with(getActivity())
                 .load(urlImage)
                 .placeholder(R.drawable.default_cover)

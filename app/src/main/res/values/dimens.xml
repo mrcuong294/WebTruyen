@@ -10,4 +10,9 @@
     <dimen name="space_4">4dp</dimen>
     <dimen name="space_56">56dp</dimen>
     <dimen name="space_24">24dp</dimen>
+    <dimen name="space_12">12dp</dimen>
+    <dimen name="poster_size_w">104dp</dimen>
+    <dimen name="poster_size_h">154dp</dimen>
+    <dimen name="space_2">2dp</dimen>
+    <dimen name="space_36">36dp</dimen>
 </resources>

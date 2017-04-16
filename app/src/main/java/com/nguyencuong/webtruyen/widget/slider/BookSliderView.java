@@ -13,19 +13,26 @@ import com.nguyencuong.webtruyen.R;
 import com.nguyencuong.webtruyen.model.Slider;
 import com.nguyencuong.webtruyen.util.DensityUtils;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Slider image with indicator;
  */
-public class BookSliderView extends FrameLayout implements ViewPager.OnPageChangeListener {
+public class BookSliderView extends FrameLayout implements ViewPager.OnPageChangeListener, View.OnClickListener {
 
     public interface OnPageChangeListener {
         void onPageChangePosition();
     }
 
+    public interface Listener {
+        void onBookSliderButtonTopViewClick();
+        void onBookSliderButtonTopFavoriteClick();
+        void onBookSliderButtonTopVoteClick();
+        void onBookSliderButtonTopNewClick();
+    }
+
     private static final String TAG = BookSliderView.class.getSimpleName();
-    private static final float RATIO_COVER_HW = 0.4f;
+    private static final float RATIO_COVER_HW = 0.5f;
     private static final float TABLET_LAND_PAGER_W = 0.7f;
     private static final int TIME_SLIDER = 3000; // mili second
 
@@ -33,12 +40,12 @@ public class BookSliderView extends FrameLayout implements ViewPager.OnPageChang
 
     private final ViewPager viewPager;
     private final LinearLayout pagerlayout;
+    private final View btnTopView;
+    private final View btnTopNew;
 
     private LinearLayout.LayoutParams layoutParamsPager;
 
     private final int MARGIN;
-
-    private ArrayList<Slider> listSliders = new ArrayList<>();
 
     private int currentItem = 0;
 
@@ -47,6 +54,8 @@ public class BookSliderView extends FrameLayout implements ViewPager.OnPageChang
     private Handler handlerRunSlider = new Handler();
 
     private OnPageChangeListener onPageChangeListener;
+
+    private Listener listener;
 
     // Runnable auto play slider;
     private Runnable runnableRunSlider = new Runnable() {
@@ -89,24 +98,28 @@ public class BookSliderView extends FrameLayout implements ViewPager.OnPageChang
 
         MARGIN = getContext().getResources().getDimensionPixelSize(R.dimen.space_16);
 
-        View.inflate(getContext(), R.layout.widget_book_slider_view, this);
+        View.inflate(getContext(), R.layout.widget_block_slider_view, this);
 
         viewPager = (ViewPager) findViewById(R.id.widget_book_slider_viewPager);
         viewPager.setOffscreenPageLimit(2);
         viewPager.addOnPageChangeListener(this);
-
+        viewPager.setPageMargin(MARGIN);
         if (getContext().getResources().getBoolean(R.bool.isTablet)) {
             // Config for tablet
             int padding = (int) (SCREEN_W * (1 - TABLET_LAND_PAGER_W)) / 2;
             viewPager.getLayoutParams().height = (int) ((SCREEN_W - padding * 2) * RATIO_COVER_HW);
             viewPager.setPadding(padding, 0, padding, 0);
-            viewPager.setPageMargin(MARGIN);
         } else {
             // set height for mobile
-            viewPager.getLayoutParams().height = (int) (SCREEN_W * RATIO_COVER_HW);
+            viewPager.getLayoutParams().height = (int) ((SCREEN_W - MARGIN*2) * RATIO_COVER_HW);
         }
 
         pagerlayout = (LinearLayout) findViewById(R.id.widget_book_slider_pager);
+
+        btnTopView = findViewById(R.id.widget_book_slider_btn_viewed);
+        btnTopView.setOnClickListener(this);
+        btnTopNew = findViewById(R.id.widget_book_slider_btn_new);
+        btnTopNew.setOnClickListener(this);
     }
 
     @Override
@@ -138,8 +151,23 @@ public class BookSliderView extends FrameLayout implements ViewPager.OnPageChang
 
     }
 
+    @Override
+    public void onClick(View view) {
+        if (listener != null) {
+            if (view == btnTopView) {
+                listener.onBookSliderButtonTopViewClick();
+            } else if (view == btnTopNew) {
+                listener.onBookSliderButtonTopNewClick();
+            }
+        }
+    }
+
+    public void setListener(Listener listener) {
+        this.listener = listener;
+    }
+
     public void setupAdapter(FragmentManager fm) {
-        adapter = new BookSliderAdapter(getContext(), fm, listSliders);
+        adapter = new BookSliderAdapter(getContext(), fm);
         viewPager.setAdapter(adapter);
     }
 
@@ -147,10 +175,9 @@ public class BookSliderView extends FrameLayout implements ViewPager.OnPageChang
      * Set data sliderView;
      * @param listSlider list slider
      */
-    public void setListSliders(ArrayList<Slider> listSlider) {
+    public void setListSliders(List<Slider> listSlider) {
         if (adapter != null) {
-            this.listSliders = listSlider;
-            adapter.notifyDataSetChanged();
+            adapter.setListSlider(listSlider);
             addPagerViews();
         }
     }

@@ -8,16 +8,16 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import com.nguyencuong.webtruyen.model.Slider;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class BookSliderAdapter extends FragmentStatePagerAdapter {
     private static final String TAG = BookSliderAdapter.class.getSimpleName();
     private final Context context;
-    private final ArrayList<Slider> list;
+    private ArrayList<Slider> list = new ArrayList<>();
 
-    public BookSliderAdapter(Context context, FragmentManager fm, ArrayList<Slider> list) {
+    public BookSliderAdapter(Context context, FragmentManager fm) {
         super(fm);
         this.context = context;
-        this.list = list;
     }
 
     @Override
@@ -41,7 +41,7 @@ public class BookSliderAdapter extends FragmentStatePagerAdapter {
         return list.size();
     }
 
-    public void addMultiItem(ArrayList<Slider> listSlider) {
+    public void setListSlider(List<Slider> listSlider) {
         list.clear();
         list.addAll(listSlider);
         notifyDataSetChanged();
