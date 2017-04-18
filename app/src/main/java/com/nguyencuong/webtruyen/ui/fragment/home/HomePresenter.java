@@ -1,4 +1,4 @@
-package com.nguyencuong.webtruyen.ui.home;
+package com.nguyencuong.webtruyen.ui.fragment.home;
 
 import android.os.Handler;
 

@@ -1,4 +1,4 @@
-package com.nguyencuong.webtruyen.ui.home;
+package com.nguyencuong.webtruyen.ui.fragment.home;
 
 import com.nguyencuong.webtruyen.BaseContractPresenter;
 import com.nguyencuong.webtruyen.BaseContractView;

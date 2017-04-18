@@ -1,11 +1,11 @@
-package com.nguyencuong.webtruyen.ui.mainscreen;
+package com.nguyencuong.webtruyen.ui.activity.main;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 
 import com.nguyencuong.webtruyen.BaseActivity;
 import com.nguyencuong.webtruyen.R;
-import com.nguyencuong.webtruyen.ui.home.HomeFragment;
+import com.nguyencuong.webtruyen.ui.fragment.home.HomeFragment;
 
 public class MainActivity extends BaseActivity {
 
