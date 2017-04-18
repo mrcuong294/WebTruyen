@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".screen.splashscreen.SplashActivity"
+            android:name=".ui.splashscreen.SplashActivity"
             android:launchMode="singleTop"
             android:configChanges="orientation|keyboard|keyboardHidden">
 
@@ -27,7 +27,7 @@
         </activity>
 
         <activity
-            android:name=".screen.mainscreen.MainActivity"
+            android:name=".ui.mainscreen.MainActivity"
             android:launchMode="singleTop"
             android:configChanges="orientation|keyboard|keyboardHidden"/>
 

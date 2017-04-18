@@ -1,10 +1,11 @@
-package com.nguyencuong.webtruyen.screen.home;
+package com.nguyencuong.webtruyen.ui.home;
 
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.NestedScrollView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -34,6 +35,8 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
 
     private HomeContract.Presenter presenter;
 
+    private NestedScrollView mNestedScrollView;
+
     private LinearLayout contentLayout;
 
     private BookSliderView mSliderView;
@@ -57,6 +60,20 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        mNestedScrollView = (NestedScrollView) view.findViewById(R.id.home_scroll_layout);
+        mNestedScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+
+                int contentH = contentLayout.getHeight();
+                int scrollH = mNestedScrollView.getHeight();
+                int b = contentH - scrollH - scrollY;
+
+                if (contentH >  scrollH && b < 100) {
+                    presenter.loadMore();
+                }
+            }
+        });
         contentLayout = (LinearLayout) view.findViewById(R.id.home_content_layout);
         animAddView = AnimationUtils.loadAnimation(
                 getActivity().getApplicationContext(), R.anim.fade_in_anim);
@@ -244,5 +261,10 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
                 contentLayout.startAnimation(animAddView);
             }
         });
+    }
+
+    @Override
+    public void clearViews() {
+        contentLayout.removeAllViews();
     }
 }

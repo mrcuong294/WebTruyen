@@ -2,11 +2,11 @@
   "success" : true,
   "code" : 0,
   "message" : "",
-  "offset" : 1,
+  "offset" : 2,
   "data" : {
     "items" : [
       {
-        "title": "Đề cử 1",
+        "title": "Đề cử 2",
         "sub_title" : "truyện hay dược đề cử cho bạn",
         "img_bg" : "http://cms.kienthuc.net.vn/zoom/1000/uploaded/bientapkienthuc/2016_08_26/son26-8/newfolder4/pham-bang-bang-mat-nhon-hoat-dang-so-tren-poster-phim.jpg",
         "link" : "/home?book_type=dich&category=tien-hiep&sort=like&order=DESC&full=1", // Link xem them;
@@ -129,7 +129,7 @@
         ]
       },
       {
-        "title": "Truyện full nên đọc 1",
+        "title": "Truyện full nên đọc 2",
         "sub_title" : "danh sach truyen mới được cập nhật chương",
         "link" : "/home?book_type=dich&category=tien-hiep&sort=like&order=DESC&full=1", // Link xem them;
         "style" : 3, //style hien thi tren home:  (1)grid view, (2)list ngang, (3)list doc, (4)ads

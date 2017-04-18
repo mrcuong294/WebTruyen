@@ -1,0 +1,9 @@
+{
+  "success" : true,
+  "code" : 3,
+  "message" : "Không có dữ liệu",
+  "offset" : 3,
+  "data" : {
+    "items" : []
+  }
+}

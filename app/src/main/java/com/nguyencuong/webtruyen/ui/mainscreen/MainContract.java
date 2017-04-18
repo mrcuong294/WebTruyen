@@ -1,4 +1,4 @@
-package com.nguyencuong.webtruyen.screen.splashscreen;
+package com.nguyencuong.webtruyen.ui.mainscreen;
 
 import com.nguyencuong.webtruyen.BaseContractPresenter;
 import com.nguyencuong.webtruyen.BaseContractView;
@@ -10,7 +10,7 @@ import com.nguyencuong.webtruyen.BaseContractView;
  * Email: vancuong2941989@gmail.com
  */
 
-public interface SplashContract {
+public interface MainContract {
 
     interface View extends BaseContractView<Presenter> {
 

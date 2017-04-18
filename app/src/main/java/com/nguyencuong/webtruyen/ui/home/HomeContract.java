@@ -1,4 +1,4 @@
-package com.nguyencuong.webtruyen.screen.home;
+package com.nguyencuong.webtruyen.ui.home;
 
 import com.nguyencuong.webtruyen.BaseContractPresenter;
 import com.nguyencuong.webtruyen.BaseContractView;
@@ -25,9 +25,14 @@ public interface HomeContract {
         void addBlockBookListHorizontal(String urlBg, String title, String subTitle, String urlMore, List<Book> books);
 
         void addAdsView();
+
+        void clearViews();
     }
 
     interface Presenter extends BaseContractPresenter {
 
+        void loadMore();
+
+        void reloadPage();
     }
 }

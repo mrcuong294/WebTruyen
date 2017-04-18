@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
-    tools:context="com.nguyencuong.webtruyen.screen.splashscreen.SplashActivity">
+    tools:context="com.nguyencuong.webtruyen.ui.splashscreen.SplashActivity">
 
     <ImageView
         android:id="@+id/imageView"

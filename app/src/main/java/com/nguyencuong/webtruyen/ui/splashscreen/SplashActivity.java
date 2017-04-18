@@ -1,4 +1,4 @@
-package com.nguyencuong.webtruyen.screen.splashscreen;
+package com.nguyencuong.webtruyen.ui.splashscreen;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,7 +6,7 @@ import android.os.Handler;
 
 import com.nguyencuong.webtruyen.BaseActivity;
 import com.nguyencuong.webtruyen.R;
-import com.nguyencuong.webtruyen.screen.mainscreen.MainActivity;
+import com.nguyencuong.webtruyen.ui.mainscreen.MainActivity;
 
 public class SplashActivity extends BaseActivity {
 

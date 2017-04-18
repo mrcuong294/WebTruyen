@@ -1,4 +1,6 @@
-package com.nguyencuong.webtruyen.screen.home;
+package com.nguyencuong.webtruyen.ui.home;
+
+import android.os.Handler;
 
 import com.nguyencuong.webtruyen.BaseContractView;
 import com.nguyencuong.webtruyen.BasePresenter;
@@ -7,6 +9,7 @@ import com.nguyencuong.webtruyen.R;
 import com.nguyencuong.webtruyen.data.remote.ApiError;
 import com.nguyencuong.webtruyen.data.remote.model.HomeModel;
 import com.nguyencuong.webtruyen.data.remote.services.HomeServices;
+import com.nguyencuong.webtruyen.util.LogUtils;
 
 /**
  * Content class.
@@ -17,14 +20,18 @@ import com.nguyencuong.webtruyen.data.remote.services.HomeServices;
 
 public class HomePresenter extends BasePresenter implements HomeServices.ResultCallback, HomeContract.Presenter {
 
-    private final HomeContract.View screenView;
+    private static final String TAG = HomePresenter.class.getSimpleName();
 
-    final HomeServices mHomeServices;
+    private final HomeContract.View mView;
 
-    protected HomePresenter(BaseContractView screenView, HomeServices mHomeServices) {
-        super(screenView);
-        this.screenView = (HomeContract.View) screenView;
-        this.screenView.setPresenter(this);
+    private final HomeServices mHomeServices;
+
+    private boolean isLoadmore = false;
+
+    protected HomePresenter(BaseContractView view, HomeServices mHomeServices) {
+        super(view);
+        this.mView = (HomeContract.View) view;
+        this.mView.setPresenter(this);
         this.mHomeServices = mHomeServices;
         mHomeServices.setResultCallback(this);
     }
@@ -50,39 +57,53 @@ public class HomePresenter extends BasePresenter implements HomeServices.ResultC
     }
 
     @Override
+    public void loadMore() {
+        if (isLoadmore) {
+            isLoadmore = false;
+            mHomeServices.cancel();
+            mHomeServices.loadHomeData();
+            LogUtils.d(TAG, " load more offset = " + mHomeServices.getOffset());
+        }
+    }
+
+    @Override
+    public void reloadPage() {
+
+    }
+
+    @Override
     public void onApiResultFailure(ApiError apiError) {
-        screenView.showMsgError(true, apiError.getMessage());
-        screenView.showLoading(false);
+        mView.showMsgError(true, apiError.getMessage());
+        mView.showLoading(false);
     }
 
     @Override
     public void onApiConnectInternetFailure(ApiError apiError) {
-        screenView.showMsgError(true, apiError.getMessage());
-        screenView.showLoading(false);
+        mView.showMsgError(true, apiError.getMessage());
+        mView.showLoading(false);
     }
 
     @Override
     public void onHomeResultSuccess(HomeModel.Data data) {
-        screenView.showLoading(false);
+        mView.showLoading(false);
         if (data == null && mHomeServices.getOffset() == 0) {
-            screenView.showMsgError(true, R.string.error_msg_no_data);
+            mView.showMsgError(true, R.string.error_msg_no_data);
             return;
         }
         if (data == null) return;
 
         // Hide alert error;
-        screenView.showMsgError(false, null);
+        mView.showMsgError(false, null);
 
         // Add Slider view if first load
         if (mHomeServices.getOffset() == 0) {
-            screenView.addSliderView(data.getSliders());
+            mView.addSliderView(data.getSliders());
         }
 
         for (HomeModel.Items homeItem : data.getItems()) {
-
             switch (homeItem.getStyle()) {
                 default:
-                    screenView.addBlockBookListVertical(
+                    mView.addBlockBookListVertical(
                             homeItem.getStyle(),
                             homeItem.getTitle(),
                             homeItem.getLink(),
@@ -90,7 +111,7 @@ public class HomePresenter extends BasePresenter implements HomeServices.ResultC
                     );
                     break;
                 case Constants.HOME_ITEM_STYLE_LIST_H:
-                    screenView.addBlockBookListHorizontal(
+                    mView.addBlockBookListHorizontal(
                             homeItem.getImgBg(),
                             homeItem.getTitle(),
                             homeItem.getSubTitle(),
@@ -99,9 +120,19 @@ public class HomePresenter extends BasePresenter implements HomeServices.ResultC
                     );
                     break;
                 case Constants.HOME_ITEM_STYLE_ADS:
-                    screenView.addAdsView();
+                    mView.addAdsView();
                     break;
             }
+        }
+
+        if (data.getItems().size() > 0) {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mHomeServices.nextOffset();
+                    isLoadmore = true;
+                }
+            }, 200);
         }
     }
 }

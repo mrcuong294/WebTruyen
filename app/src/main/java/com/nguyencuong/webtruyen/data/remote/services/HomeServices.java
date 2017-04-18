@@ -45,6 +45,10 @@ public class HomeServices extends BaseApiServices {
         return offset;
     }
 
+    public void nextOffset() {
+        offset++;
+    }
+
     public void loadHomeData() {
         if (resultCallback == null) {
             return;

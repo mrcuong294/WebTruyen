@@ -9,6 +9,6 @@ package com.nguyencuong.webtruyen;
 
 public abstract class BasePresenter {
 
-    protected BasePresenter(BaseContractView screenView) {
+    protected BasePresenter(BaseContractView view) {
     }
 }
