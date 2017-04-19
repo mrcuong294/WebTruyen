@@ -17,4 +17,5 @@
     <string name="widget_home_block_item_grid_text_chapter">%1$s/%2$s</string>
     <string name="widget_home_block_item_list_text_author">Tác giả : %s</string>
     <string name="widget_home_block_item_list_text_viewed">%s lượt đọc</string>
+    <string name="sample_text_book_author">Tác giả: Ngã cật tây hồng thị</string>
 </resources>

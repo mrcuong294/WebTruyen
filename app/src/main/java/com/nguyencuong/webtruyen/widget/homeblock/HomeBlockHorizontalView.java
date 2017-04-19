@@ -126,7 +126,7 @@ public class HomeBlockHorizontalView extends FrameLayout implements View.OnClick
 
     public void setBackGroundView(String url) {
         int w = (int) DensityUtils.getWidthInPx(getContext());
-        int h = DensityUtils.dip2px(getContext(), 186);
+        int h = DensityUtils.dip2px(getContext(), 194);
         SimpleTarget target = new SimpleTarget<Bitmap>(w, h) {
             @Override
             public void onResourceReady(Bitmap bitmap, GlideAnimation glideAnimation) {

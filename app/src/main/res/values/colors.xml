@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#212121</color>
-    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorPrimary">#1d232f</color>
+    <color name="colorPrimaryDark">#181c25</color>
     <color name="colorAccent">@color/blue</color>
 
     <color name="black">#000000</color>
@@ -10,16 +10,23 @@
     <color name="black_70">#b2000000</color>
     <color name="black_60">#99000000</color>
     <color name="black_50">#61000000</color>
+    <color name="black_24">#3d000000</color>
     <color name="black_12">#1e000000</color>
 
-    <color name="background_dark">#303030</color>
-    <color name="background_dark_87">#de303030</color>
+    <color name="background_dark">#212832</color>
+    <color name="background_dark_87">#de212832</color>
 
-    <color name="blue_70">#b20277bd</color>
-    <color name="blue_50">#610277bd</color>
-    <color name="blue">#0277bd</color>
-    <color name="blue_light">#58a5f0</color>
-    <color name="blue_dark">#004c8c</color>
+    <color name="blue_70">#b200cbec</color>
+    <color name="blue_50">#6100cbec</color>
+    <color name="blue">#00cbec</color>
+    <color name="blue_light">#24e2fc</color>
+    <color name="blue_dark">#006E7D</color>
+
+    <color name="bluegray">#1d232f</color>
+    <color name="bluegray_dark">#181c25</color>
+    <color name="bluegray_light">#3d4657</color>
+
+    <color name="green">#98dd42</color>
 
     <color name="orange_light">#FF8951</color>
     <color name="orange_dark">#E03600</color>
@@ -34,7 +41,7 @@
     <color name="text_dark_2">#8a000000</color>
     <color name="text_dark_3">#61000000</color>
 
-    <color name="text_light_1">#ffffffff</color>
+    <color name="text_light_1">#ffffff</color>
     <color name="text_light_2">#b2ffffff</color>
     <color name="text_light_3">#7fffffff</color>
 

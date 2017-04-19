@@ -15,7 +15,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nguyencuong.webtruyen.R;
-import com.nguyencuong.webtruyen.util.LogUtils;
 
 /**
  * Content class.
@@ -50,17 +49,15 @@ public class BookBottomBar extends LinearLayout {
 
     private ViewGroup rootView;
 
-    private ImageView imgIcon, imgIconEnd;
+    private ImageView imgIcon;
 
-    private TextView tvLabel, tvLabelEnd;
+    private TextView tvLabel;
 
     private Listener listener;
 
     private ValueAnimator animatorTextSize;
-    private ValueAnimator animatorTextSizeEnd;
 
     private ValueAnimator animatorMargin;
-    private ValueAnimator animatorMarginEnd;
 
     private int positionItemActived = 0;
 
@@ -78,7 +75,7 @@ public class BookBottomBar extends LinearLayout {
         LayoutInflater.from(getContext()).inflate(R.layout.widget_bottom_bar, this, true);
 
         COLOR_NORMAL = ResourcesCompat.getColor(getContext().getResources(), R.color.text_light_1, null);
-        COLOR_ACTIVE = ResourcesCompat.getColor(getContext().getResources(), R.color.blue_light, null);
+        COLOR_ACTIVE = ResourcesCompat.getColor(getContext().getResources(), R.color.blue, null);
         MARGIN_NORMAL = getContext().getResources().getDimensionPixelSize(R.dimen.space_8);
         MARGIN_ACTIVE = getContext().getResources().getDimensionPixelSize(R.dimen.space_6);
 
@@ -120,13 +117,11 @@ public class BookBottomBar extends LinearLayout {
                     tvLabel = (TextView) itemView.getChildAt(1);
 
                     ViewGroup itemViewEnd = (ViewGroup) rootView.getChildAt(posItemOld);
-                    imgIconEnd = (ImageView) itemViewEnd.getChildAt(0);
-                    tvLabelEnd = (TextView) itemViewEnd.getChildAt(1);
+                    ImageView imgIconEnd = (ImageView) itemViewEnd.getChildAt(0);
+                    TextView tvLabelEnd = (TextView) itemViewEnd.getChildAt(1);
 
                     animatorTextSize.start();
-                    animatorTextSizeEnd.start();
                     animatorMargin.start();
-                    animatorMarginEnd.start();
 
                     changeIconColor(imgIcon, COLOR_ACTIVE);
                     changeIconColor(imgIconEnd, COLOR_NORMAL);
@@ -134,7 +129,7 @@ public class BookBottomBar extends LinearLayout {
                     changeTextColor(tvLabelEnd, COLOR_NORMAL);
 
                     itemView.setAlpha(1.0f);
-                    itemViewEnd.setAlpha(0.7f);
+                    itemViewEnd.setAlpha(0.6f);
                 }
             });
         }
@@ -150,35 +145,23 @@ public class BookBottomBar extends LinearLayout {
     private void setupAnimation() {
         animatorTextSize = ValueAnimator.ofFloat(TEXT_SIZE_NORMAL, TEXT_SIZE_ACTIVE);
         animatorTextSize.setDuration(ANIMATION_DURATION);
-        animatorTextSize.setRepeatMode(ValueAnimator.RESTART);
+        animatorTextSize.setRepeatMode(ValueAnimator.REVERSE);
+        animatorTextSize.setRepeatCount(1);
         animatorTextSize.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
 
                 if (tvLabel != null) {
                     Float size = (float) valueAnimator.getAnimatedValue();
-                    LogUtils.i(TAG, "animatorTextSize size : " + size);
                     setTextSize(tvLabel, size);
-                }
-            }
-        });
-
-        animatorTextSizeEnd = ValueAnimator.ofFloat(TEXT_SIZE_ACTIVE, TEXT_SIZE_NORMAL);
-        animatorTextSizeEnd.setDuration(ANIMATION_DURATION);
-        animatorTextSize.setRepeatMode(ValueAnimator.RESTART);
-        animatorTextSizeEnd.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-
-                if (tvLabelEnd != null) {
-                    setTextSize(tvLabelEnd, (float) valueAnimator.getAnimatedValue());
                 }
             }
         });
 
         animatorMargin = ValueAnimator.ofInt(MARGIN_NORMAL, MARGIN_ACTIVE);
         animatorMargin.setDuration(ANIMATION_DURATION);
-        animatorTextSize.setRepeatMode(ValueAnimator.RESTART);
+        animatorMargin.setRepeatMode(ValueAnimator.REVERSE);
+        animatorMargin.setRepeatCount(1);
         animatorMargin.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
@@ -187,21 +170,6 @@ public class BookBottomBar extends LinearLayout {
                     FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) imgIcon.getLayoutParams();
                     layoutParams.topMargin = (int) valueAnimator.getAnimatedValue();
                     imgIcon.setLayoutParams(layoutParams);
-                }
-            }
-        });
-
-        animatorMarginEnd = ValueAnimator.ofInt(MARGIN_ACTIVE, MARGIN_NORMAL);
-        animatorMarginEnd.setDuration(ANIMATION_DURATION);
-        animatorTextSize.setRepeatMode(ValueAnimator.RESTART);
-        animatorMarginEnd.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-
-                if (imgIconEnd != null) {
-                    FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) imgIconEnd.getLayoutParams();
-                    layoutParams.topMargin = (int) valueAnimator.getAnimatedValue();
-                    imgIconEnd.setLayoutParams(layoutParams);
                 }
             }
         });

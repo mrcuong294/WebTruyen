@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/widget_home_block_root"
     android:layout_width="match_parent"
-    android:layout_height="186dp"
+    android:layout_height="194dp"
     android:background="@drawable/default_cover">
 
     <android.support.v7.widget.RecyclerView
@@ -22,8 +22,8 @@
         android:layout_width="@dimen/poster_size_w"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginLeft="@dimen/space_16"
-        android:layout_marginRight="@dimen/space_16"
+        android:layout_marginLeft="@dimen/space_8"
+        android:layout_marginRight="@dimen/space_8"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -72,7 +72,7 @@
             android:paddingBottom="@dimen/space_8"
             android:paddingTop="@dimen/space_4"
             android:text="@string/widget_home_block_action_view_more"
-            android:textColor="@color/blue_light" />
+            android:textColor="@color/blue" />
 
     </LinearLayout>
 

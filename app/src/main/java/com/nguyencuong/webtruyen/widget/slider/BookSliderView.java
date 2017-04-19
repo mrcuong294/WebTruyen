@@ -111,7 +111,8 @@ public class BookSliderView extends FrameLayout implements ViewPager.OnPageChang
             viewPager.setPadding(padding, 0, padding, 0);
         } else {
             // set height for mobile
-            viewPager.getLayoutParams().height = (int) ((SCREEN_W - MARGIN*2) * RATIO_COVER_HW);
+            //viewPager.getLayoutParams().height = (int) ((SCREEN_W - MARGIN*2) * RATIO_COVER_HW);
+            viewPager.getLayoutParams().height = (int) (SCREEN_W * RATIO_COVER_HW);
         }
 
         pagerlayout = (LinearLayout) findViewById(R.id.widget_book_slider_pager);

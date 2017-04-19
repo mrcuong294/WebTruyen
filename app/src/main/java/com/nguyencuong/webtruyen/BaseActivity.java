@@ -24,6 +24,8 @@ public class BaseActivity  extends AppCompatActivity{
 
     protected DialogLoading dialogLoading;
 
+    protected boolean enableButterKnight = true;
+
     protected boolean isScreenLand;
 
     protected boolean isLoadingBackPressExit = true;
@@ -53,7 +55,9 @@ public class BaseActivity  extends AppCompatActivity{
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
         super.setContentView(layoutResID);
-        ButterKnife.bind(this);
+        if (enableButterKnight) {
+            ButterKnife.bind(this);
+        }
     }
 
     @Override

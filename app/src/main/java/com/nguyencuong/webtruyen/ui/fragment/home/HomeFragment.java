@@ -26,18 +26,24 @@ import com.nguyencuong.webtruyen.widget.slider.BookSliderView;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.OnClick;
+
 /**
  * A simple {@link Fragment} subclass.
  * create an instance of this fragment.
  */
 public class HomeFragment extends BaseFragment implements HomeContract.View {
+
     private static final String TAG = HomeFragment.class.getSimpleName();
 
     private HomeContract.Presenter presenter;
 
-    private NestedScrollView mNestedScrollView;
+    @BindView(R.id.home_scroll_layout)
+    NestedScrollView mNestedScrollView;
 
-    private LinearLayout contentLayout;
+    @BindView(R.id.home_content_layout)
+    LinearLayout contentLayout;
 
     private BookSliderView mSliderView;
 
@@ -60,7 +66,6 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mNestedScrollView = (NestedScrollView) view.findViewById(R.id.home_scroll_layout);
         mNestedScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             @Override
             public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
@@ -74,7 +79,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
                 }
             }
         });
-        contentLayout = (LinearLayout) view.findViewById(R.id.home_content_layout);
+
         animAddView = AnimationUtils.loadAnimation(
                 getActivity().getApplicationContext(), R.anim.fade_in_anim);
 
@@ -141,6 +146,11 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
         mHandler.removeCallbacksAndMessages(null);
         mHandler = null;
         super.onDestroyView();
+    }
+
+    @OnClick(R.id.home_img_search)
+    public void onToolbarBtnSearchClick() {
+
     }
 
     @Override

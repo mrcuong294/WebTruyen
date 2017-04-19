@@ -12,8 +12,6 @@
         android:id="@+id/widget_book_slider_viewPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/space_16"
-        android:paddingRight="@dimen/space_16"
         android:clipToPadding="false"
         android:gravity="center"
         android:background="@drawable/ds_widget_slider_bg"
@@ -57,7 +55,7 @@
                 android:layout_height="32dp"
                 android:background="@drawable/ds_widget_slider_btn_icon"
                 android:contentDescription="@string/app_name"
-                android:padding="@dimen/space_4"
+                android:padding="@dimen/space_6"
                 android:src="@drawable/ic_widget_slider_btn_view" />
 
             <TextView
@@ -86,7 +84,7 @@
                 android:layout_height="32dp"
                 android:background="@drawable/ds_widget_slider_btn_icon"
                 android:contentDescription="@string/app_name"
-                android:padding="@dimen/space_4"
+                android:padding="@dimen/space_6"
                 android:src="@drawable/ic_widget_slider_btn_favorite" />
 
             <TextView

@@ -50,7 +50,7 @@ public class HomeBlockRecyclerAdapter extends RecyclerView.Adapter {
         this.itemType = itemType;
         this.itemWidth = itemWidth;
 
-        itemHeight = itemWidth * 147/99;
+        itemHeight = itemWidth * 49/33;
     }
 
     @Override

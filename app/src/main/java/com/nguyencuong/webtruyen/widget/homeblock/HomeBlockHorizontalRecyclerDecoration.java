@@ -31,11 +31,8 @@ public class HomeBlockHorizontalRecyclerDecoration extends RecyclerView.ItemDeco
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
         int pos = parent.getChildAdapterPosition(view);
         if(pos == 0){
-            outRect.left = ITEM_WIDTH + MARGIN + MARGIN_ITEM;
+            outRect.left = ITEM_WIDTH + MARGIN;
             outRect.right = MARGIN_ITEM;
-        } else if (pos == state.getItemCount()-1){
-            outRect.left = 0;
-            outRect.right = MARGIN;
         } else {
             outRect.left = 0;
             outRect.right = MARGIN_ITEM;

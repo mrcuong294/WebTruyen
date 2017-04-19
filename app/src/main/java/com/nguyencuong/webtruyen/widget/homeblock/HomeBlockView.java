@@ -84,11 +84,11 @@ public class HomeBlockView extends FrameLayout implements View.OnClickListener {
                     spanCount = 6;
                 }
                 float screenWidth = DensityUtils.getWidthInPx(getContext());
-                int margin = getContext().getResources().getDimensionPixelSize(R.dimen.space_16);
-                int pading = getContext().getResources().getDimensionPixelSize(R.dimen.space_12);
+                int margin = getContext().getResources().getDimensionPixelSize(R.dimen.space_8);
+                int pading = getContext().getResources().getDimensionPixelSize(R.dimen.space_4);
 
                 itemType = ITEM_TYPE_GRID;
-                itemWidth = (int) ((screenWidth - margin*2 - (margin / 2)*(spanCount - 1)) / spanCount);
+                itemWidth = (int) ((screenWidth - margin*(spanCount - 1)) / spanCount);
                 layoutManager = new GridLayoutManager(getContext(), spanCount);
 
                 recyclerView.setPadding(pading, 0, pading, 0);

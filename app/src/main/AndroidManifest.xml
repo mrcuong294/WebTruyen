@@ -12,25 +12,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".ui.activity.splash.SplashActivity"
-            android:launchMode="singleTop"
-            android:configChanges="orientation|keyboard|keyboardHidden">
-
+            android:configChanges="orientation|keyboard|keyboardHidden"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-
         <activity
             android:name=".ui.activity.main.MainActivity"
-            android:launchMode="singleTop"
-            android:configChanges="orientation|keyboard|keyboardHidden"/>
-
+            android:configChanges="orientation|keyboard|keyboardHidden"
+            android:launchMode="singleTop" />
+        <activity android:name=".ui.activity.bookdetail.BookDetailActivity"></activity>
     </application>
 
 </manifest>

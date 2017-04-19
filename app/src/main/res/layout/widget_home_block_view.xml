@@ -14,8 +14,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_16"
         android:layout_marginBottom="@dimen/space_8"
-        android:layout_marginLeft="@dimen/space_16"
-        android:layout_marginRight="@dimen/space_16"
+        android:layout_marginLeft="@dimen/space_8"
+        android:layout_marginRight="@dimen/space_8"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -33,13 +33,14 @@
         android:id="@+id/widget_block_tv_more"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="@dimen/space_16"
+        android:padding="@dimen/space_8"
         android:layout_alignBaseline="@+id/widget_block_tv_title"
         android:layout_alignBottom="@+id/widget_block_tv_title"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
+        android:background="?attr/selectableItemBackgroundBorderless"
         android:textStyle="bold"
-        android:textColor="@color/blue_light"
+        android:textColor="@color/blue"
         android:text="@string/widget_home_block_action_view_more"/>
 
     <android.support.v7.widget.RecyclerView
@@ -55,8 +56,8 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="@dimen/space_8"
-        android:layout_marginLeft="@dimen/space_16"
-        android:layout_marginRight="@dimen/space_16"
+        android:layout_marginLeft="@dimen/space_8"
+        android:layout_marginRight="@dimen/space_8"
         android:layout_below="@+id/widget_block_recyclerview"
         android:background="@color/divider_light"/>
 
@@ -67,15 +68,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_4"
         android:layout_marginBottom="@dimen/space_4"
-        android:paddingTop="@dimen/space_8"
-        android:paddingBottom="@dimen/space_8"
-        android:paddingLeft="@dimen/space_16"
-        android:paddingRight="@dimen/space_16"
+        android:padding="@dimen/space_8"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/divider"
+        android:background="?attr/selectableItemBackgroundBorderless"
         android:textStyle="bold"
-        android:textColor="@color/blue_light"
+        android:textColor="@color/blue"
         android:text="@string/widget_home_block_action_view_more"/>
 
 
