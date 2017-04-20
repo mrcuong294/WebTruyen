@@ -26,7 +26,9 @@
             android:name=".ui.activity.main.MainActivity"
             android:configChanges="orientation|keyboard|keyboardHidden"
             android:launchMode="singleTop" />
-        <activity android:name=".ui.activity.bookdetail.BookDetailActivity"></activity>
+        <activity
+            android:name=".ui.activity.bookdetail.BookDetailActivity"
+            android:theme="@style/AppTheme.Translucent"/>
     </application>
 
 </manifest>

@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.nguyencuong.webtruyen.Constants;
 import com.nguyencuong.webtruyen.R;
 import com.nguyencuong.webtruyen.model.Slider;
+import com.nguyencuong.webtruyen.ui.activity.bookdetail.BookDetailActivity;
 import com.nguyencuong.webtruyen.util.IntentUtils;
 import com.nguyencuong.webtruyen.util.LogUtils;
 import com.nguyencuong.webtruyen.util.StringUtils;
@@ -80,8 +81,7 @@ public class BookSliderFragment extends Fragment implements View.OnClickListener
                 showToast(R.string.error_msg_no_data);
             }
             showToast("Show book info. id = " + slider.getBookId());
-            //Intent intent = MovieDetailActivity.buildIntent(getActivity(), slider.getMovId());
-            //startActivity(intent);
+            getActivity().startActivity(BookDetailActivity.buildIntent(getActivity(), slider.getId()));
         } else if (slider.getType() == Constants.SLIDER_TYPE_BANNER) {
             if (StringUtils.isEmpty(slider.getLink())) {
                 showToast(R.string.error_msg_no_data);

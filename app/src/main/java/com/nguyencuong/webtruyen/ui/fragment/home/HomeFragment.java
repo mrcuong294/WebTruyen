@@ -18,9 +18,11 @@ import com.nguyencuong.webtruyen.R;
 import com.nguyencuong.webtruyen.data.remote.services.HomeServices;
 import com.nguyencuong.webtruyen.model.Book;
 import com.nguyencuong.webtruyen.model.Slider;
+import com.nguyencuong.webtruyen.ui.activity.bookdetail.BookDetailActivity;
 import com.nguyencuong.webtruyen.util.DensityUtils;
 import com.nguyencuong.webtruyen.util.LogUtils;
 import com.nguyencuong.webtruyen.widget.homeblock.HomeBlockHorizontalView;
+import com.nguyencuong.webtruyen.widget.homeblock.HomeBlockRecyclerAdapter;
 import com.nguyencuong.webtruyen.widget.homeblock.HomeBlockView;
 import com.nguyencuong.webtruyen.widget.slider.BookSliderView;
 
@@ -211,6 +213,12 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
                         showToastSuccess(urlMore);
                     }
                 });
+                homeBlockView.setOnItemClickListener(new HomeBlockRecyclerAdapter.OnItemClickListener() {
+                    @Override
+                    public void onBookItemClick(int bookId) {
+                        getActivity().startActivity(BookDetailActivity.buildIntent(getActivity(), bookId));
+                    }
+                });
                 contentLayout.removeView(placeHolderView);
                 contentLayout.addView(homeBlockView, contentLayout.getId());
                 LogUtils.d(TAG, "addBlockBookListVertical : add homeBlockView at " + title);
@@ -238,6 +246,12 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
                     @Override
                     public void onHomeBlockViewMoreClick(String urlMore) {
                         showToastSuccess(urlMore);
+                    }
+                });
+                homeBlockView.setOnItemClickListener(new HomeBlockRecyclerAdapter.OnItemClickListener() {
+                    @Override
+                    public void onBookItemClick(int bookId) {
+                        getActivity().startActivity(BookDetailActivity.buildIntent(getActivity(), bookId));
                     }
                 });
                 contentLayout.removeView(placeHolderView);

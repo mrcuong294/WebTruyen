@@ -18,4 +18,7 @@
     <string name="widget_home_block_item_list_text_author">Tác giả : %s</string>
     <string name="widget_home_block_item_list_text_viewed">%s lượt đọc</string>
     <string name="sample_text_book_author">Tác giả: Ngã cật tây hồng thị</string>
+    <string name="sample_book_detail_des">The nature of this transition forces the human eye to focus on the content and its representation in the new activity instead of the actual activity frame sliding or fading which makes the experience a lot more seamless.</string>
+    <string name="book_action_reading">Đọc</string>
+    <string name="book_action_list_chapter">Chương</string>
 </resources>

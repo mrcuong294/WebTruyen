@@ -2,23 +2,33 @@
 <android.support.v4.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_dark"
-    tools:context="com.nguyencuong.webtruyen.ui.activity.bookdetail.BookDetailActivity">
+    android:focusableInTouchMode="true">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/background_dark">
 
+        <ImageView
+            android:id="@+id/bookdetail_img_poster"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_above="@+id/book_tv_chapter"
+            android:scaleType="centerCrop"
+            android:src="@drawable/default_poster"
+            android:alpha="0.5"
+            android:contentDescription="@string/app_name"/>
+
         <!-- Toolbar -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/space_48"
-            app:layout_scrollFlags="scroll|enterAlways"
-            app:layout_collapseMode="pin">
+            android:layout_marginTop="@dimen/space_24"
+            android:background="@color/transparent_dark">
 
             <ImageView
                 android:id="@+id/mdetails_btn_back"
@@ -68,86 +78,207 @@
 
         </RelativeLayout>
 
-        <ImageView
-            android:id="@+id/mdetails_img_cover_play"
-            android:layout_width="@dimen/space_56"
-            android:layout_height="@dimen/space_56"
-            android:layout_marginTop="100dp"
-            android:src="@drawable/ic_widget_slider_top_view"
-            android:tint="@color/text_light_1"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
             android:layout_centerHorizontal="true"
-            android:contentDescription="@string/app_name"/>
+            android:background="@color/transparent_dark"
+            android:orientation="horizontal"
+            android:alpha="0.7">
 
-        <ImageView
-            android:id="@+id/bookdetail_img_poster"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:layout_alignParentTop="true"
-            android:layout_above="@+id/book_layout_info"
-            android:scaleType="centerCrop"
-            android:src="@drawable/default_poster"
-            android:alpha="0.5"
-            android:contentDescription="@string/app_name"/>
+            <TextView
+                style="@style/AppTheme.Text.Body"
+                android:id="@+id/book_btn_reading"
+                android:layout_width="@dimen/space_72"
+                android:layout_height="@dimen/space_72"
+                android:layout_margin="@dimen/space_8"
+                android:paddingTop="@dimen/space_12"
+                android:paddingBottom="@dimen/space_8"
+                android:gravity="center"
+                android:drawableTop="@drawable/ic_bottom_bar_libs"
+                android:background="@drawable/ds_book_detail_reading_bg"
+                android:tint="@color/text_light_1"
+                android:textStyle="bold"
+                android:text="@string/book_action_reading"/>
+
+            <TextView
+                style="@style/AppTheme.Text.Body"
+                android:id="@+id/book_btn_list_chapter"
+                android:layout_width="@dimen/space_72"
+                android:layout_height="@dimen/space_72"
+                android:layout_margin="@dimen/space_8"
+                android:paddingTop="@dimen/space_12"
+                android:paddingBottom="@dimen/space_8"
+                android:gravity="center"
+                android:drawableTop="@drawable/ic_list_chapter_white_24"
+                android:background="@drawable/ds_book_detail_reading_bg"
+                android:tint="@color/text_light_1"
+                android:textStyle="bold"
+                android:text="@string/book_action_list_chapter"/>
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/book_tv_name"
             style="@style/Base.TextAppearance.AppCompat.Display1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="160dp"
             android:paddingTop="@dimen/space_48"
-            android:paddingBottom="@dimen/space_8"
-            android:paddingLeft="@dimen/space_8"
-            android:paddingRight="@dimen/space_8"
+            android:paddingBottom="@dimen/space_4"
+            android:paddingLeft="@dimen/space_16"
+            android:paddingRight="@dimen/space_16"
             android:background="@drawable/ds_widget_home_block_item_title_bg"
             android:textColor="@color/text_light_1"
             android:textStyle="bold"
             android:textAllCaps="true"
-            android:text="Phàm nhân tu tiên"/>
+            android:text="Phàm nhân tu tiên truyện"/>
 
         <TextView
             android:id="@+id/book_tv_author"
-            style="@style/AppTheme.Text.Body"
+            style="@style/AppTheme.Text.Caption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/book_tv_name"
-            android:layout_marginTop="@dimen/space_24"
-            android:layout_marginLeft="@dimen/space_8"
-            android:layout_marginRight="@dimen/space_8"
+            android:layout_marginTop="28dp"
+            android:layout_marginLeft="@dimen/space_16"
+            android:layout_marginRight="@dimen/space_16"
             android:background="@color/transparent_dark"
             android:textColor="@color/text_light_1"
             android:textStyle="bold"
             android:textAllCaps="true"
-            tools:text="@string/sample_text_book_author" />
+            android:text="@string/sample_text_book_author" />
 
         <TextView
             android:id="@+id/book_tv_chapter"
-            style="@style/AppTheme.Text.Body.Bold"
+            style="@style/AppTheme.Text.Body"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/space_8"
-            android:layout_marginRight="@dimen/space_8"
+            android:layout_marginLeft="@dimen/space_16"
+            android:layout_marginRight="@dimen/space_16"
             android:layout_below="@+id/book_tv_name"
             android:background="@color/transparent_dark"
             android:textColor="@color/text_light_1"
-            tools:text="1250/2000 chương, cập nhật lúc 12:00 12/04" />
+            android:text="1250/2000 chương, cập nhật lúc 12:00 12/04" />
+
+        <View
+            android:id="@+id/book_line1"
+            android:layout_width="@dimen/space_36"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/space_24"
+            android:layout_marginLeft="@dimen/space_16"
+            android:layout_marginRight="@dimen/space_16"
+            android:layout_below="@+id/book_tv_chapter"
+            android:background="@color/blue_light" />
+
+        <TextView
+            android:id="@+id/book_tv_likes"
+            style="@style/AppTheme.Text.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_16"
+            android:layout_marginLeft="@dimen/space_16"
+            android:layout_marginRight="@dimen/space_16"
+            android:layout_below="@+id/book_line1"
+            android:gravity="center_vertical"
+            android:drawableStart="@drawable/ic_favorite_border_white_24dp"
+            android:drawableLeft="@drawable/ic_widget_slider_btn_favorite"
+            android:drawablePadding="@dimen/space_8"
+            android:textSize="@dimen/text_size_14sp"
+            android:text="1200 likes"/>
+
+        <TextView
+            android:id="@+id/book_tv_viewed"
+            style="@style/AppTheme.Text.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_8"
+            android:layout_marginLeft="@dimen/space_16"
+            android:layout_marginRight="@dimen/space_16"
+            android:layout_below="@+id/book_tv_likes"
+            android:gravity="center_vertical"
+            android:drawableStart="@drawable/ic_visibility_white_24dp"
+            android:drawableLeft="@drawable/ic_visibility_white_24dp"
+            android:drawablePadding="@dimen/space_8"
+            android:textSize="@dimen/text_size_14sp"
+            android:text="120000 lượt đọc"/>
 
         <LinearLayout
-            android:id="@+id/book_layout_info"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/book_tv_name"
-            android:orientation="vertical">
+            android:id="@+id/book_layout_ratting"
+            android:layout_width="@dimen/space_72"
+            android:layout_height="@dimen/space_72"
+            android:layout_marginBottom="@dimen/space_24"
+            android:layout_marginLeft="@dimen/space_16"
+            android:layout_marginRight="@dimen/space_16"
+            android:layout_below="@+id/book_line1"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/ds_book_detail_rating_bg"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                style="@style/AppTheme.Text.Display"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/blue_light"
+                android:textStyle="bold"
+                android:text="00"/>
+
+            <TextView
+                style="@style/AppTheme.Text.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_4"
+                android:gravity="bottom"
+                android:text="/10"/>
 
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/book_tv_des_title"
+            style="@style/AppTheme.Text.Body.Bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/book_layout_ratting"
+            android:paddingTop="@dimen/space_16"
+            android:paddingLeft="@dimen/space_16"
+            android:paddingRight="@dimen/space_16"
+            android:background="@color/bluegray_light"
+            android:text="Giới thiệu"/>
+
+        <TextView
+            android:id="@+id/book_tv_des"
+            style="@style/AppTheme.Text.Body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/book_tv_des_title"
+            android:padding="@dimen/space_16"
+            android:background="@color/bluegray_light"
+            android:lineSpacingMultiplier="1.2"
+            android:text="@string/sample_book_detail_des"/>
+
+        <com.nguyencuong.webtruyen.widget.homeblock.HomeBlockHorizontalView
+            android:id="@+id/book_block_relate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/book_tv_des"/>
+
+        <TextView
+            android:id="@+id/book_fb_cmt"
+            android:layout_below="@+id/book_block_relate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/space_16"
+            android:text="Facebook comment"/>
 
         <FrameLayout
             android:id="@+id/mdetails_layout_error"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/black_80"
-            android:visibility="gone"
-            tools:visibility="gone">
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/mdetails_tv_error"
@@ -162,7 +293,7 @@
                 android:orientation="vertical"
                 android:padding="@dimen/space_24"
                 android:textColor="@color/text_light_1"
-                tools:text="@string/error_msg_no_data" />
+                android:text="@string/error_msg_no_data" />
 
         </FrameLayout>
 

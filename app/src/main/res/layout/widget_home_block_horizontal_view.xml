@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/widget_home_block_root"
     android:layout_width="match_parent"
-    android:layout_height="194dp"
+    android:layout_height="@dimen/home_block_hsize_height"
     android:background="@drawable/default_cover">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/widget_block_recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/home_block_hsize_height"
         android:background="@drawable/ds_widget_home_block_hoz_bg"
         android:paddingTop="@dimen/space_16"
         android:paddingBottom="@dimen/space_16"

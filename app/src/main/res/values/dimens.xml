@@ -15,4 +15,6 @@
     <dimen name="poster_size_h">162dp</dimen>
     <dimen name="space_2">2dp</dimen>
     <dimen name="space_36">36dp</dimen>
+    <dimen name="space_72">72dp</dimen>
+    <dimen name="home_block_hsize_height">194dp</dimen>
 </resources>
