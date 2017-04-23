@@ -24,6 +24,7 @@
             android:layout_width="@dimen/poster_size_w"
             android:layout_height="@dimen/poster_size_h"
             android:scaleType="fitXY"
+            android:transitionName="book_img_poster"
             android:contentDescription="@string/app_name"
             tools:src="@drawable/default_poster" />
 

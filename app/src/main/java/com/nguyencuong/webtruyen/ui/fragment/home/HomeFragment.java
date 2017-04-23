@@ -1,5 +1,6 @@
 package com.nguyencuong.webtruyen.ui.fragment.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -215,8 +216,9 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
                 });
                 homeBlockView.setOnItemClickListener(new HomeBlockRecyclerAdapter.OnItemClickListener() {
                     @Override
-                    public void onBookItemClick(int bookId) {
-                        getActivity().startActivity(BookDetailActivity.buildIntent(getActivity(), bookId));
+                    public void onBookItemClick(View imgPoster, int bookId) {
+                        Intent intent = BookDetailActivity.buildIntent(getActivity(), bookId);
+                        getActivity().startActivity(intent);
                     }
                 });
                 contentLayout.removeView(placeHolderView);
@@ -250,8 +252,9 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
                 });
                 homeBlockView.setOnItemClickListener(new HomeBlockRecyclerAdapter.OnItemClickListener() {
                     @Override
-                    public void onBookItemClick(int bookId) {
-                        getActivity().startActivity(BookDetailActivity.buildIntent(getActivity(), bookId));
+                    public void onBookItemClick(View imgPoster, int bookId) {
+                        Intent intent = BookDetailActivity.buildIntent(getActivity(), bookId);
+                        getActivity().startActivity(intent);
                     }
                 });
                 contentLayout.removeView(placeHolderView);

@@ -2,6 +2,7 @@ package com.nguyencuong.webtruyen.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.nguyencuong.webtruyen.Constants;
 
 /**
  * Content class.
@@ -35,6 +36,12 @@ public class Book {
     @SerializedName("description")
     @Expose
     private String description;
+    @SerializedName("share_link")
+    @Expose
+    private String shareLink;
+    @SerializedName("fb_comment")
+    @Expose
+    private String fbComment;
     @SerializedName("total_chapter")
     @Expose
     private int totalChapter;
@@ -53,6 +60,9 @@ public class Book {
     @SerializedName("total_rating")
     @Expose
     private int totalRating;
+    @SerializedName("update_at")
+    @Expose
+    private long updateAt;
     @SerializedName("audio")
     @Expose
     private boolean audio;
@@ -102,7 +112,7 @@ public class Book {
     }
 
     public String getPoster() {
-        if (poster == null) return "http://google";
+        if (poster == null) return "";
         return poster;
     }
 
@@ -126,6 +136,28 @@ public class Book {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getShareLink() {
+        if (shareLink == null || shareLink.length() < 5) {
+            return Constants.HOME_URL;
+        }
+        return shareLink;
+    }
+
+    public void setShareLink(String shareLink) {
+        this.shareLink = shareLink;
+    }
+
+    public String getFbComment() {
+        if (shareLink == null || shareLink.length() < 5) {
+            return Constants.HOME_URL;
+        }
+        return fbComment;
+    }
+
+    public void setFbComment(String fbComment) {
+        this.fbComment = fbComment;
     }
 
     public int getTotalChapter() {
@@ -172,8 +204,29 @@ public class Book {
         return totalRating;
     }
 
+    public String getRating() {
+        if (totalRating == 0 || pointRating == 0) {
+            return "00";
+        }
+
+        double rating = Math.round(pointRating * 10 / totalRating) / 10;
+        if (rating == 10) {
+            return "10";
+        } else {
+            return String.valueOf(rating);
+        }
+    }
+
     public void setTotalRating(int totalRating) {
         this.totalRating = totalRating;
+    }
+
+    public long getUpdateAt() {
+        return updateAt;
+    }
+
+    public void setUpdateAt(int updateAt) {
+        this.updateAt = updateAt;
     }
 
     public boolean isAudio() {

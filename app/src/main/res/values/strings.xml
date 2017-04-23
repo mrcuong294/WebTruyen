@@ -19,6 +19,21 @@
     <string name="widget_home_block_item_list_text_viewed">%s lượt đọc</string>
     <string name="sample_text_book_author">Tác giả: Ngã cật tây hồng thị</string>
     <string name="sample_book_detail_des">The nature of this transition forces the human eye to focus on the content and its representation in the new activity instead of the actual activity frame sliding or fading which makes the experience a lot more seamless.</string>
-    <string name="book_action_reading">Đọc</string>
-    <string name="book_action_list_chapter">Chương</string>
+    <string name="book_action_reading">Đọc truyện</string>
+    <string name="book_action_list_chapter">DS Chương</string>
+    <string name="book_text_author">&lt;font color=\'#00cbec\'&gt;TÁC GIẢ : &lt;/font&gt; %s</string>
+    <string name="sample_book_title">Phàm nhân tu tiên truyện</string>
+    <string name="sample_book_chapter">1250/2000 chương, cập nhật lúc 12:00 12/04</string>
+    <string name="sample_book_viewed">120000 lượt đọc</string>
+    <string name="book_detail_text_rating_default">8.9</string>
+    <string name="book_detail_text_rating_total">/10</string>
+    <string name="book_detail_text_des_title">Giới thiệu</string>
+    <string name="book_action_follow">Theo dõi</string>
+    <string name="book_action_like">Thích</string>
+    <string name="book_action_share">share</string>
+    <string name="sample_book_likes">1200 thích</string>
+    <string name="book_detail_text_liked">%s thích</string>
+    <string name="book_detail_text_view">%s lượt đọc</string>
+    <string name="book_detail_text_chapter_update">%1$s/%2$s chương, cập nhật lúc %3$s</string>
+    <string name="book_detail_text_description">&lt;b&gt;%1$s&lt;/b&gt;&lt;br/&gt;&lt;b&gt;Thể loại : &lt;/b&gt;%2$s&lt;br/&gt;&lt;b&gt;Loại truyện : &lt;/b&gt;%3$s&lt;br/&gt;&lt;b&gt;Giới thiệu&lt;/b&gt;&lt;br/&gt;%4$s</string>
 </resources>

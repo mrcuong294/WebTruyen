@@ -14,4 +14,7 @@ public final class Constants {
 
     public static final int SLIDER_TYPE_MOVIE = 0;
     public static final int SLIDER_TYPE_BANNER = 1;
+
+
+    public static final String HOME_URL = "http://google.com";
 }

@@ -27,7 +27,7 @@ import java.util.List;
 public class HomeBlockRecyclerAdapter extends RecyclerView.Adapter {
 
     public interface OnItemClickListener {
-        void onBookItemClick(int bookId);
+        void onBookItemClick(View imgPoster, int bookId);
     }
 
     public static final int ITEM_TYPE_GRID = 0;
@@ -179,7 +179,7 @@ public class HomeBlockRecyclerAdapter extends RecyclerView.Adapter {
         public void onClick(View view) {
             if (onItemClickListener != null) {
                 int bookId = listBooks.get(getLayoutPosition()).getId();
-                onItemClickListener.onBookItemClick(bookId);
+                onItemClickListener.onBookItemClick(poster, bookId);
             }
         }
     }
@@ -264,7 +264,7 @@ public class HomeBlockRecyclerAdapter extends RecyclerView.Adapter {
         public void onClick(View view) {
             if (onItemClickListener != null) {
                 int bookId = listBooks.get(getLayoutPosition()).getId();
-                onItemClickListener.onBookItemClick(bookId);
+                onItemClickListener.onBookItemClick(poster, bookId);
             }
         }
     }

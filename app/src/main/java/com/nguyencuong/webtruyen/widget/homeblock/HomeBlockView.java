@@ -16,6 +16,7 @@ import com.nguyencuong.webtruyen.Constants;
 import com.nguyencuong.webtruyen.R;
 import com.nguyencuong.webtruyen.model.Book;
 import com.nguyencuong.webtruyen.util.DensityUtils;
+import com.nguyencuong.webtruyen.util.LogUtils;
 
 import java.util.List;
 
@@ -34,6 +35,8 @@ public class HomeBlockView extends FrameLayout implements View.OnClickListener {
     public interface OnViewMoreListener {
         void onHomeBlockViewMoreClick(String urlMore);
     }
+
+    private static final String TAG = HomeBlockView.class.getSimpleName();
 
     private TextView title;
     private View btnViewMoreTop;
@@ -115,6 +118,7 @@ public class HomeBlockView extends FrameLayout implements View.OnClickListener {
                 } else {
                     layoutManager = new LinearLayoutManager(getContext());
                 }
+                LogUtils.d(TAG, "ITEM_TYPE_LIST_V isTablet = " + isTablet);
                 break;
         }
 

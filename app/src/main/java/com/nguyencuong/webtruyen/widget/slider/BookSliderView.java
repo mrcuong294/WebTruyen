@@ -123,6 +123,7 @@ public class BookSliderView extends FrameLayout implements ViewPager.OnPageChang
         btnTopNew.setOnClickListener(this);
     }
 
+
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
