@@ -7,8 +7,13 @@ import com.nguyencuong.webtruyen.data.remote.ApiError;
 import com.nguyencuong.webtruyen.data.remote.BaseApiResultCallback;
 import com.nguyencuong.webtruyen.data.remote.BaseApiServices;
 import com.nguyencuong.webtruyen.data.remote.model.BookDetailModel;
+import com.nguyencuong.webtruyen.data.remote.model.BookListChapterlModel;
 import com.nguyencuong.webtruyen.model.Book;
+import com.nguyencuong.webtruyen.model.Chapter;
 import com.nguyencuong.webtruyen.util.FileUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Content class.
@@ -20,11 +25,17 @@ import com.nguyencuong.webtruyen.util.FileUtils;
 public class BookDetailServices extends BaseApiServices {
 
     public interface ResultCallback extends BaseApiResultCallback {
-
         void onBookDetailResultSuccess(Book book);
     }
 
+    public interface ChapterResultCallback {
+        void onChapterResultSuccess(List<Chapter> chapters, int offset, int limit);
+        void onChapterResultFailed(ApiError error);
+    }
+
     private ResultCallback resultCallback;
+
+    private ChapterResultCallback chapterResultCallback;
 
     public BookDetailServices(Context context) {
         super(context);
@@ -34,6 +45,14 @@ public class BookDetailServices extends BaseApiServices {
         this.resultCallback = resultCallback;
     }
 
+    public void setChapterResultCallback(ChapterResultCallback chapterResultCallback) {
+        this.chapterResultCallback = chapterResultCallback;
+    }
+
+    /**
+     * Load book details;
+     * @param bookId id of book;
+     */
     public void loadBookDetail(int bookId) {
         if (resultCallback == null) {
             return;
@@ -45,6 +64,34 @@ public class BookDetailServices extends BaseApiServices {
             resultCallback.onBookDetailResultSuccess(model.getBook());
         } else {
             resultCallback.onApiResultFailure(new ApiError.Builder().setCode(-3).build());
+        }
+    }
+
+    /**
+     * Load list chapters of book.;
+     * @param bookId id of book;
+     */
+    public void loadListChapter(int bookId, int offset) {
+        if (chapterResultCallback == null) {
+            return;
+        }
+        String dataJson = FileUtils.getJsonFromAssets(context, PATH_TEST, "book_detail_list_chapter.json");
+
+        if (dataJson != null) {
+            BookListChapterlModel model = new Gson().fromJson(dataJson, BookListChapterlModel.class);
+
+            List<Chapter> chapters = new ArrayList<>();
+            for (int i = 0; i < 50; i++) {
+                Chapter chapter = new Chapter();
+                chapter.setId(model.getData().getLimit() * model.getData().getOffset() + i);
+                chapter.setNumber(model.getData().getLimit() * model.getData().getOffset() + i);
+                chapter.setName(String.format("%1$s - Chương %2$s", chapter.getNumber(), chapter.getNumber()));
+                chapters.add(chapter);
+            }
+
+            chapterResultCallback.onChapterResultSuccess(chapters, model.getData().getOffset(), model.getData().getLimit());
+        } else {
+            chapterResultCallback.onChapterResultFailed(new ApiError.Builder().setCode(-3).build());
         }
     }
 

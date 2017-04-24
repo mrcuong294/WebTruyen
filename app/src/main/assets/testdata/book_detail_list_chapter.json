@@ -1,0 +1,21 @@
+{
+  "success" : true,
+  "code" : 0,
+  "message" : "",
+  "data" : {
+    "limit" : 50,
+    "offset": 0,
+    "chapters" : [
+      {
+        "id": "1",
+        "name": "Ch\u01b0\u01a1ng 1: S\u1ed1 Kh\u1ed5 A Phi",
+        "number": "1"
+      },
+      {
+        "id": "1",
+        "name": "Ch\u01b0\u01a1ng 1: S\u1ed1 Kh\u1ed5 A Phi",
+        "number": "1"
+      }
+    ]
+  }
+}

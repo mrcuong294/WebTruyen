@@ -76,15 +76,55 @@ public class BookDetailPresenter extends BasePresenter implements BookDeailContr
     }
 
     @Override
+    public void reloadBookDetail() {
+        mView.showMsgError(false, null);
+        mView.showLoading(true);
+        mBookDetailServices.loadBookDetail(bookId);
+    }
+
+    @Override
     public void loadBookListChapter() {
 
     }
 
     @Override
-    public void reloadBookDetail() {
-        mView.showMsgError(false, null);
-        mView.showLoading(true);
-        mBookDetailServices.loadBookDetail(bookId);
+    public void reloadBookListChapter() {
+
+    }
+
+    @Override
+    public void readBook() {
+
+    }
+
+    @Override
+    public void readBookFromLast() {
+
+    }
+
+    @Override
+    public void likeBook() {
+
+    }
+
+    @Override
+    public void shareBook() {
+
+    }
+
+    @Override
+    public void ratingBook() {
+
+    }
+
+    @Override
+    public void submitRating(int point) {
+
+    }
+
+    @Override
+    public void addBookmark() {
+
     }
 
     @Override

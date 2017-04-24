@@ -28,7 +28,12 @@
             android:launchMode="singleTop" />
         <activity
             android:name=".ui.activity.bookdetail.BookDetailActivity"
-            android:theme="@style/AppTheme.Translucent"/>
+            android:theme="@style/AppTheme.Translucent" />
+        <activity
+            android:name=".ui.activity.bookreader.BookReaderActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_book_reader"
+            android:theme="@style/FullscreenTheme"></activity>
     </application>
 
 </manifest>

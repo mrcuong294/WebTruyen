@@ -181,4 +181,14 @@ public class BookDetailActivity extends BaseActivity implements BookDeailContrac
                 book.getName(), book.getCategory(), book.getBookType(), book.getDescription());
         tvDescription.setText(TextUtils.styleTextHtml(des));
     }
+
+    @Override
+    public void showPopupListChapter() {
+
+    }
+
+    @Override
+    public void showPopupRating() {
+
+    }
 }

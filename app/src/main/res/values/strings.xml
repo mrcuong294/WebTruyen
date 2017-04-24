@@ -36,4 +36,8 @@
     <string name="book_detail_text_view">%s lượt đọc</string>
     <string name="book_detail_text_chapter_update">%1$s/%2$s chương, cập nhật lúc %3$s</string>
     <string name="book_detail_text_description">&lt;b&gt;%1$s&lt;/b&gt;&lt;br/&gt;&lt;b&gt;Thể loại : &lt;/b&gt;%2$s&lt;br/&gt;&lt;b&gt;Loại truyện : &lt;/b&gt;%3$s&lt;br/&gt;&lt;b&gt;Giới thiệu&lt;/b&gt;&lt;br/&gt;%4$s</string>
+
+    <string name="title_activity_book_reader">BookReaderActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

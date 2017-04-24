@@ -18,6 +18,10 @@ public interface BookDeailContract {
     interface View extends BaseContractView<Presenter> {
 
         void setBookDetails(Book book);
+
+        void showPopupListChapter();
+
+        void showPopupRating();
     }
 
     interface Presenter extends BaseContractPresenter {
@@ -26,10 +30,24 @@ public interface BookDeailContract {
 
         void loadBookDetail();
 
-        void loadBookListChapter();
-
         void reloadBookDetail();
 
+        void loadBookListChapter();
 
+        void reloadBookListChapter();
+
+        void readBook();
+
+        void readBookFromLast();
+
+        void likeBook();
+
+        void shareBook();
+
+        void ratingBook();
+
+        void submitRating(int point);
+
+        void addBookmark();
     }
 }
