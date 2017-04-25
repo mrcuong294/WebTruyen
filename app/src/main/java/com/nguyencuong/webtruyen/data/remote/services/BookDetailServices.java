@@ -24,29 +24,51 @@ import java.util.List;
 
 public class BookDetailServices extends BaseApiServices {
 
-    public interface ResultCallback extends BaseApiResultCallback {
-        void onBookDetailResultSuccess(Book book);
-    }
+    public interface OnResultCallback extends BaseApiResultCallback {
 
-    public interface ChapterResultCallback {
+        void onBookDetailResultSuccess(Book book);
+
         void onChapterResultSuccess(List<Chapter> chapters, int offset, int limit);
+
         void onChapterResultFailed(ApiError error);
     }
 
-    private ResultCallback resultCallback;
+    public static class ResultCallback implements OnResultCallback {
 
-    private ChapterResultCallback chapterResultCallback;
+        @Override
+        public void onApiResultFailure(ApiError apiError) {
+
+        }
+
+        @Override
+        public void onApiConnectInternetFailure(ApiError apiError) {
+
+        }
+
+        @Override
+        public void onBookDetailResultSuccess(Book book) {
+
+        }
+
+        @Override
+        public void onChapterResultSuccess(List<Chapter> chapters, int offset, int limit) {
+
+        }
+
+        @Override
+        public void onChapterResultFailed(ApiError error) {
+
+        }
+    }
+
+    private OnResultCallback resultCallback;
 
     public BookDetailServices(Context context) {
         super(context);
     }
 
-    public void setResultCallback(ResultCallback resultCallback) {
+    public void setResultCallback(OnResultCallback resultCallback) {
         this.resultCallback = resultCallback;
-    }
-
-    public void setChapterResultCallback(ChapterResultCallback chapterResultCallback) {
-        this.chapterResultCallback = chapterResultCallback;
     }
 
     /**
@@ -72,7 +94,7 @@ public class BookDetailServices extends BaseApiServices {
      * @param bookId id of book;
      */
     public void loadListChapter(int bookId, int offset) {
-        if (chapterResultCallback == null) {
+        if (resultCallback == null) {
             return;
         }
         String dataJson = FileUtils.getJsonFromAssets(context, PATH_TEST, "book_detail_list_chapter.json");
@@ -89,9 +111,9 @@ public class BookDetailServices extends BaseApiServices {
                 chapters.add(chapter);
             }
 
-            chapterResultCallback.onChapterResultSuccess(chapters, model.getData().getOffset(), model.getData().getLimit());
+            resultCallback.onChapterResultSuccess(chapters, model.getData().getOffset(), model.getData().getLimit());
         } else {
-            chapterResultCallback.onChapterResultFailed(new ApiError.Builder().setCode(-3).build());
+            resultCallback.onChapterResultFailed(new ApiError.Builder().setCode(-3).build());
         }
     }
 

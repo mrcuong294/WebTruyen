@@ -7,8 +7,11 @@ package com.nguyencuong.webtruyen;
  * Email: vancuong2941989@gmail.com
  */
 
-public abstract class BasePresenter {
+public abstract class BasePresenter<T> {
 
-    protected BasePresenter(BaseContractView view) {
+    protected T mView;
+
+    protected BasePresenter(T view) {
+        this.mView = view;
     }
 }

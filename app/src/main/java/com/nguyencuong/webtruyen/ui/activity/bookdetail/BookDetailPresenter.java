@@ -2,7 +2,6 @@ package com.nguyencuong.webtruyen.ui.activity.bookdetail;
 
 import android.content.Intent;
 
-import com.nguyencuong.webtruyen.BaseContractView;
 import com.nguyencuong.webtruyen.BasePresenter;
 import com.nguyencuong.webtruyen.R;
 import com.nguyencuong.webtruyen.data.remote.ApiError;
@@ -19,10 +18,9 @@ import static com.nguyencuong.webtruyen.ui.activity.bookdetail.BookDetailActivit
  * Email: vancuong2941989@gmail.com
  */
 
-public class BookDetailPresenter extends BasePresenter implements BookDeailContract.Presenter, BookDetailServices.ResultCallback {
+public class BookDetailPresenter extends BasePresenter<BookDeailContract.View> implements BookDeailContract.Presenter {
 
     private static final String TAG = BookDetailPresenter.class.getSimpleName();
-    private final BookDeailContract.View mView;
 
     private final BookDetailServices mBookDetailServices;
 
@@ -30,13 +28,12 @@ public class BookDetailPresenter extends BasePresenter implements BookDeailContr
 
     private int bookId = -1;
 
-    protected BookDetailPresenter(BaseContractView view, BookDetailServices mBookDetailServices) {
+    protected BookDetailPresenter(BookDeailContract.View view, BookDetailServices mBookDetailServices) {
         super(view);
-        this.mView = (BookDeailContract.View) view;
         this.mBookDetailServices = mBookDetailServices;
 
         this.mView.setPresenter(this);
-        this.mBookDetailServices.setResultCallback(this);
+        this.mBookDetailServices.setResultCallback(resultCallback);
     }
 
     @Override
@@ -127,30 +124,32 @@ public class BookDetailPresenter extends BasePresenter implements BookDeailContr
 
     }
 
-    @Override
-    public void onApiResultFailure(ApiError apiError) {
-        mView.showLoading(false);
-        mView.showMsgError(true, apiError.getMessage());
-        LogUtils.d(TAG, "onApiResultFailure ");
-    }
-
-    @Override
-    public void onApiConnectInternetFailure(ApiError apiError) {
-        mView.showLoading(false);
-        mView.showMsgError(true, apiError.getMessage());
-        LogUtils.d(TAG, "onApiConnectInternetFailure ");
-    }
-
-    @Override
-    public void onBookDetailResultSuccess(Book book) {
-        this.mBook = book;
-        if (mBook != null) {
-            mView.showMsgError(false, null);
-            mView.setBookDetails(book);
-        } else {
-            mView.showMsgError(true, R.string.error_msg_no_data);
+    private BookDetailServices.ResultCallback resultCallback = new BookDetailServices.ResultCallback() {
+        @Override
+        public void onApiResultFailure(ApiError apiError) {
+            mView.showLoading(false);
+            mView.showMsgError(true, apiError.getMessage());
+            LogUtils.d(TAG, "onApiResultFailure ");
         }
-        LogUtils.d(TAG, "onBookDetailResultSuccess ");
-        mView.showLoading(false);
-    }
+
+        @Override
+        public void onApiConnectInternetFailure(ApiError apiError) {
+            mView.showLoading(false);
+            mView.showMsgError(true, apiError.getMessage());
+            LogUtils.d(TAG, "onApiConnectInternetFailure ");
+        }
+
+        @Override
+        public void onBookDetailResultSuccess(Book book) {
+            mBook = book;
+            if (mBook != null) {
+                mView.showMsgError(false, null);
+                mView.setBookDetails(book);
+            } else {
+                mView.showMsgError(true, R.string.error_msg_no_data);
+            }
+            LogUtils.d(TAG, "onBookDetailResultSuccess ");
+            mView.showLoading(false);
+        }
+    };
 }
