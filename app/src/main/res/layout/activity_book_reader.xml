@@ -1,15 +1,52 @@
-<FrameLayout
+<android.support.v4.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true"
     tools:context="com.nguyencuong.webtruyen.ui.activity.bookreader.BookReaderActivity">
 
-    <android.support.v4.view.ViewPager
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background_dark"/>
+        android:background="@color/background_dark">
 
+        <FrameLayout
+            android:id="@+id/reader_layout_frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"/>
 
-</FrameLayout>
+        <ProgressBar
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/reader_tv_pager"
+            android:max="100" />
+
+        <TextView
+            style="@style/AppTheme.Text.Caption"
+            android:id="@+id/reader_tv_pager"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/space_4"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            tools:text="100/125"/>
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:fitsSystemWindows="true"
+        android:choiceMode="singleChoice"
+        android:background="@color/colorPrimary"/>
+
+</android.support.v4.widget.DrawerLayout>
